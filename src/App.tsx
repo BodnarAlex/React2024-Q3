@@ -1,3 +1,4 @@
+import './App.css';
 import type { ReactNode } from 'react';
 import { Component } from 'react';
 

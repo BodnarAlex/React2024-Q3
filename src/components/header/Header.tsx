@@ -7,7 +7,9 @@ export class Header extends Component {
   public render(): ReactNode {
     return (
       <header className={styles.header}>
-        <div className={styles.container}>Star Wars</div>
+        <button className={styles.button}>Error</button>
+        <div className={styles.container} />
+        <input type="search" name="search" id="search" />
       </header>
     );
   }

@@ -1,22 +1,38 @@
 .header {
-  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
   width: 100%;
-  background-image: linear-gradient(to bottom, var(--primary-color), #073283);
+  padding: 20px 0;
+  background: #100f13;
+  border-bottom: 2px solid #fcfbe7;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr max-content 1fr;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-  max-width: var(--max-width);
-  margin-inline: auto;
-  padding: 9px 10px 10px;
-  font-size: 20px;
-  color: var(--text-color);
+  width: 150px;
+  height: 70px;
+  background-image: url("../../assets/images/star-wars.png");
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  transition: all 500ms;
 
-  @media (width <= 768px) {
-    grid-template-columns: 1fr;
+  &:hover {
+    background-size: 100%;
+    transition: all 500ms;
+  }
+}
+
+.button {
+  background-color: #c39f4b;
+  border: 1px solid #e0ce97;
+  border-radius: 10px;
+  transition: all 500ms;
+
+  &:hover {
+    background-color: #e0ce97;
+    border: 1px solid #c39f4b;
+    transition: all 500ms;
   }
 }
