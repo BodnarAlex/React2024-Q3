@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { Component } from 'react';
+import { Search } from '@/components/search/Search.tsx';
 
 import styles from './styles.module.scss';
 
@@ -9,7 +10,7 @@ export class Header extends Component {
       <header className={styles.header}>
         <button className={styles.button}>Error</button>
         <div className={styles.container} />
-        <input type="search" name="search" id="search" />
+        <Search />
       </header>
     );
   }

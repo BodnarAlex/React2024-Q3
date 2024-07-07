@@ -4,6 +4,8 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 20px 0;
   background: #100f13;
   border-bottom: 2px solid #fcfbe7;
@@ -25,6 +27,7 @@
 }
 
 .button {
+  height: 42px;
   background-color: #c39f4b;
   border: 1px solid #e0ce97;
   border-radius: 10px;
