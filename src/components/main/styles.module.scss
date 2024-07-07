@@ -1,4 +1,17 @@
 .main {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2%;
+  justify-content: space-between;
   width: 100%;
-  background: #000000;
+  max-width: 1400px;
+  margin: 50px auto;
+  text-align: center;
+
+  & .card {
+    width: 30%;
+    height: 400px;
+    margin-bottom: 3%;
+    border: 1px solid #c39f4b;
+  }
 }
