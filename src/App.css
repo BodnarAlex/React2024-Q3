@@ -1,6 +1,14 @@
+body {
+  margin: 0;
+}
+
 #root {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
   box-sizing: border-box;
   width: 100%;
+  min-height: 100dvh;
   text-align: center;
   background: #100f13;
 }
