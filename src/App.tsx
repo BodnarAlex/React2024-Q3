@@ -1,21 +1,16 @@
-import { useState } from 'react';
-import './App.css';
+import type { ReactNode } from 'react';
+import { Component } from 'react';
 
-function App(): JSX.Element {
-  const [count, setCount] = useState(0);
+import { Header } from '@/components/header/Header';
+import { Main } from '@/components/main/Main';
 
-  return (
-    <>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((prevCount) => prevCount + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
-  );
+export class App extends Component {
+  public render(): ReactNode {
+    return (
+      <>
+        <Header />
+        <Main />
+      </>
+    );
+  }
 }
-
-export default App;

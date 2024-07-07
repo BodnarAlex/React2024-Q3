@@ -1,0 +1,22 @@
+.header {
+  position: relative;
+  width: 100%;
+  background-image: linear-gradient(to bottom, var(--primary-color), #073283);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr max-content 1fr;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 9px 10px 10px;
+  font-size: 20px;
+  color: var(--text-color);
+
+  @media (width <= 768px) {
+    grid-template-columns: 1fr;
+  }
+}
