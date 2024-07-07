@@ -3,12 +3,11 @@ module.exports = {
   env: { browser: true, es2022: true },
   plugins: [
     '@typescript-eslint',
-    'simple-import-sort',
-    'import',
     'react',
     'react-refresh',
     'react-hooks',
     'react-compiler',
+    'eslint-plugin-react-compiler',
     'prettier',
   ],
   extends: [
@@ -34,8 +33,6 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'error',
     'react-compiler/react-compiler': 'error',
-    'simple-import-sort/imports': 'error',
-    'simple-import-sort/exports': 'error',
     'prettier/prettier': 'error',
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-void': ['error', { allowAsStatement: true }],
