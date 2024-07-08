@@ -5,13 +5,19 @@ import { ErrorButton } from '@/components/error-button/ErrorButton.tsx';
 
 import styles from './styles.module.scss';
 
-export class Header extends Component {
+interface HeaderProps {
+  onSearchChange: (value: string) => void;
+}
+
+export class Header extends Component<HeaderProps> {
   public render(): ReactNode {
+    const { onSearchChange } = this.props;
+
     return (
       <header className={styles.header}>
         <ErrorButton />
         <div className={styles.container} />
-        <Search />
+        <Search onSearchChange={onSearchChange} />
       </header>
     );
   }

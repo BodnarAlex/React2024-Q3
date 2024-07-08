@@ -6,6 +6,7 @@
   box-sizing: border-box;
   width: 100%;
   max-width: 1400px;
+  min-height: calc(100svh - 285px);
   margin: 50px auto;
   padding: 0 50px;
   text-align: center;

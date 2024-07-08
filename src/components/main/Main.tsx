@@ -4,8 +4,11 @@ import styles from './styles.module.scss';
 import type { MainState } from '../../api/types.ts';
 import { fetchData } from '../../api/api.ts';
 
-export class Main extends Component<Record<string, never>, MainState> {
-  constructor(props: NonNullable<unknown>) {
+interface MainProps {
+  searchValue: string;
+}
+export class Main extends Component<MainProps, MainState> {
+  constructor(props: MainProps) {
     super(props);
     this.state = {
       peoples: [],
@@ -13,11 +16,24 @@ export class Main extends Component<Record<string, never>, MainState> {
   }
 
   public async componentDidMount(): Promise<void> {
+    const { searchValue } = this.props;
     try {
-      const response = await fetchData('', 10);
+      const response = await fetchData(searchValue, 10);
       this.setState({ peoples: response.results });
     } catch (error) {
       console.error('Error fetching data:', error);
+    }
+  }
+
+  public async componentDidUpdate(prevProps: MainProps): Promise<void> {
+    const { searchValue } = this.props;
+    if (prevProps.searchValue !== searchValue) {
+      try {
+        const response = await fetchData(searchValue, 10);
+        this.setState({ peoples: response.results });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     }
   }
 
