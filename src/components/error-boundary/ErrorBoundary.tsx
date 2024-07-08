@@ -29,8 +29,8 @@ export class ErrorBoundary extends Component<Props, State> {
     const { hasError, errorMessage } = this.state;
     const { children } = this.props;
 
-    if (hasError && errorMessage) {
-      return <ErrorPage />;
+    if (hasError) {
+      return <ErrorPage errorMessage={errorMessage} />;
     }
 
     return children;
