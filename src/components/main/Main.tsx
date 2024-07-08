@@ -14,7 +14,7 @@ export class Main extends Component<Record<string, never>, MainState> {
 
   public async componentDidMount(): Promise<void> {
     try {
-      const response = await fetchData('ob', 10);
+      const response = await fetchData('', 10);
       this.setState({ peoples: response.results });
     } catch (error) {
       console.error('Error fetching data:', error);
