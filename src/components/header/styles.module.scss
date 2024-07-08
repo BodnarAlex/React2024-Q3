@@ -10,3 +10,18 @@
   background: #100f13;
   border-bottom: 2px solid #fcfbe7;
 }
+
+.container {
+  width: 150px;
+  height: 70px;
+  background-image: url("../../assets/images/star-wars.png");
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  transition: all 500ms;
+
+  &:hover {
+    background-size: 100%;
+    transition: all 500ms;
+  }
+}
