@@ -1,0 +1,33 @@
+.containerButton,
+.container {
+  width: 230px;
+}
+
+.container {
+  width: 150px;
+  height: 70px;
+  background-image: url("../../assets/images/star-wars.png");
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  transition: all 500ms;
+
+  &:hover {
+    background-size: 100%;
+    transition: all 500ms;
+  }
+}
+
+.button {
+  height: 42px;
+  background-color: #c39f4b;
+  border: 1px solid #e0ce97;
+  border-radius: 10px;
+  transition: all 500ms;
+
+  &:hover {
+    background-color: #e0ce97;
+    border: 1px solid #c39f4b;
+    transition: all 500ms;
+  }
+}

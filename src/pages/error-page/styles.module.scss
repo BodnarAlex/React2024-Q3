@@ -1,12 +1,14 @@
-.header {
+.main {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+.header {
   padding: 20px 0;
-  background: #100f13;
-  border-bottom: 2px solid #fcfbe7;
+  color: #fcfbe7;
 }
