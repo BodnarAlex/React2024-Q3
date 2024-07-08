@@ -8,7 +8,9 @@ export class Header extends Component {
   public render(): ReactNode {
     return (
       <header className={styles.header}>
-        <button className={styles.button}>Error</button>
+        <div className={styles.containerButton}>
+          <button className={styles.button}>Error</button>
+        </div>
         <div className={styles.container} />
         <Search />
       </header>
