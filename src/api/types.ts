@@ -26,4 +26,5 @@ interface IPeopleResponse {
 
 export interface MainState {
   peoples: IPeopleResponse[];
+  isLoading: boolean;
 }

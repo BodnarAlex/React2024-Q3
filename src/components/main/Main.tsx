@@ -3,6 +3,7 @@ import { Component } from 'react';
 import styles from './styles.module.scss';
 import type { MainState } from '../../api/types.ts';
 import { fetchData } from '../../api/api.ts';
+import { Loader } from '../loader/Loader.tsx';
 import type { MainProps } from './types.ts';
 
 export class Main extends Component<MainProps, MainState> {
@@ -10,16 +11,20 @@ export class Main extends Component<MainProps, MainState> {
     super(props);
     this.state = {
       peoples: [],
+      isLoading: false,
     };
   }
 
   public async componentDidMount(): Promise<void> {
     const localSearch = localStorage.getItem('searchString') || '';
     try {
+      this.setState({ isLoading: true });
       const response = await fetchData(localSearch, 10);
       this.setState({ peoples: response.results });
     } catch (error) {
       console.error('Error fetching data:', error);
+    } finally {
+      this.setState({ isLoading: false });
     }
   }
 
@@ -27,16 +32,27 @@ export class Main extends Component<MainProps, MainState> {
     const { searchValue } = this.props;
     if (prevProps.searchValue !== searchValue) {
       try {
+        this.setState({ isLoading: true });
         const response = await fetchData(searchValue, 10);
         this.setState({ peoples: response.results });
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        this.setState({ isLoading: false });
       }
     }
   }
 
   public render(): ReactNode {
-    const { peoples } = this.state;
+    const { peoples, isLoading } = this.state;
+
+    if (isLoading) {
+      return <Loader />;
+    }
+
+    if (peoples.length === 0) {
+      return <h3 className={styles.name}>Nothing found</h3>;
+    }
 
     return (
       <main className={styles.main}>
