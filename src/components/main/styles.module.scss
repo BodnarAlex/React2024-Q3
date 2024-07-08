@@ -13,5 +13,19 @@
     height: 400px;
     margin-bottom: 3%;
     border: 1px solid #c39f4b;
+
+    & .name {
+      color: #c39f4b;
+    }
+  }
+}
+
+.paragraph {
+  font-weight: 800;
+  color: #535e5e;
+
+  & .detail {
+    font-weight: 500;
+    color: #fcfbe7;
   }
 }
