@@ -3,10 +3,8 @@ import { Component } from 'react';
 import styles from './styles.module.scss';
 import type { MainState } from '../../api/types.ts';
 import { fetchData } from '../../api/api.ts';
+import type { MainProps } from './types.ts';
 
-interface MainProps {
-  searchValue: string;
-}
 export class Main extends Component<MainProps, MainState> {
   constructor(props: MainProps) {
     super(props);
@@ -16,9 +14,9 @@ export class Main extends Component<MainProps, MainState> {
   }
 
   public async componentDidMount(): Promise<void> {
-    const { searchValue } = this.props;
+    const localSearch = localStorage.getItem('searchString') || '';
     try {
-      const response = await fetchData(searchValue, 10);
+      const response = await fetchData(localSearch, 10);
       this.setState({ peoples: response.results });
     } catch (error) {
       console.error('Error fetching data:', error);

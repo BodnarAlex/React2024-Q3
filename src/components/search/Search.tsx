@@ -7,7 +7,7 @@ import styles from './styles.module.scss';
 export class Search extends Component<SearchProps, SearchState> {
   constructor(props: SearchProps) {
     super(props);
-    this.state = { searchValue: '' };
+    this.state = { searchValue: localStorage.getItem('searchString') || '' };
   }
 
   private handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -18,13 +18,22 @@ export class Search extends Component<SearchProps, SearchState> {
     event.preventDefault();
     const { searchValue } = this.state;
     const { onSearchChange } = this.props;
+    localStorage.setItem('searchString', searchValue);
     onSearchChange(searchValue);
   };
 
   public render(): ReactNode {
+    const { searchValue } = this.state;
+
     return (
       <form className={styles.search_box} onSubmit={this.handleSubmit}>
-        <input className={styles.search} type="text" placeholder="Search..." onChange={this.handleInputChange} />
+        <input
+          className={styles.search}
+          type="text"
+          placeholder="Search..."
+          value={searchValue}
+          onChange={this.handleInputChange}
+        />
         <button type="submit" className={styles.search_button} aria-label="Search-button" />
       </form>
     );
