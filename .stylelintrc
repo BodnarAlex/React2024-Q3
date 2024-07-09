@@ -1,8 +1,6 @@
 {
   "extends": "stylelint-config-standard-scss",
-  "plugins": [
-    "stylelint-order"
-  ],
+  "plugins": ["stylelint-order"],
   "rules": {
     "declaration-block-no-redundant-longhand-properties": null,
     "scss/dollar-variable-empty-line-before": null,
@@ -29,9 +27,7 @@
     "selector-type-no-unknown": [
       true,
       {
-        "ignore": [
-          "custom-elements"
-        ]
+        "ignore": ["custom-elements"]
       }
     ],
     "string-no-newline": true,
@@ -53,9 +49,7 @@
     "length-zero-no-unit": [
       true,
       {
-        "ignore": [
-          "custom-properties"
-        ]
+        "ignore": ["custom-properties"]
       }
     ],
     "string-quotes": "double",
@@ -69,9 +63,7 @@
     "value-no-vendor-prefix": [
       true,
       {
-        "ignoreValues": [
-          "box"
-        ]
+        "ignoreValues": ["box"]
       }
     ],
     "property-case": "lower",
@@ -83,9 +75,7 @@
     "declaration-block-no-duplicate-properties": [
       true,
       {
-        "ignore": [
-          "consecutive-duplicates-with-same-prefixless-values"
-        ]
+        "ignore": ["consecutive-duplicates-with-same-prefixless-values"]
       }
     ],
     "declaration-block-semicolon-newline-after": "always",
@@ -122,12 +112,8 @@
     "rule-empty-line-before": [
       "always",
       {
-        "except": [
-          "first-nested"
-        ],
-        "ignore": [
-          "after-comment"
-        ]
+        "except": ["first-nested"],
+        "ignore": ["after-comment"]
       }
     ],
     "media-feature-colon-space-after": "always",
@@ -144,13 +130,8 @@
     "at-rule-empty-line-before": [
       "always",
       {
-        "except": [
-          "first-nested",
-          "blockless-after-blockless"
-        ],
-        "ignore": [
-          "after-comment"
-        ]
+        "except": ["first-nested", "blockless-after-blockless"],
+        "ignore": ["after-comment"]
       }
     ],
     "at-rule-name-case": "lower",
@@ -178,13 +159,8 @@
     "max-nesting-depth": [
       2,
       {
-        "ignoreAtRules": [
-          "media",
-          "include"
-        ],
-        "ignore": [
-          "pseudo-classes"
-        ]
+        "ignoreAtRules": ["media", "include"],
+        "ignore": ["pseudo-classes"]
       }
     ],
     "max-empty-lines": 2,
@@ -200,9 +176,7 @@
     "indentation": [
       2,
       {
-        "ignore": [
-          "inside-parens"
-        ]
+        "ignore": ["inside-parens"]
       }
     ],
     "function-comma-newline-after": null,
