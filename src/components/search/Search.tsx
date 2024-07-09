@@ -1,11 +1,11 @@
 import type { ReactNode, ChangeEvent, FormEvent } from 'react';
 import { Component } from 'react';
-import type { SearchProps, SearchState } from './types.ts';
+import type { ISearchProps, ISearchState } from './types.ts';
 
 import styles from './styles.module.scss';
 
-export class Search extends Component<SearchProps, SearchState> {
-  constructor(props: SearchProps) {
+export class Search extends Component<ISearchProps, ISearchState> {
+  constructor(props: ISearchProps) {
     super(props);
     this.state = { searchValue: localStorage.getItem('searchString') || '' };
   }

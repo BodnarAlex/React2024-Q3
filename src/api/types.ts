@@ -24,7 +24,7 @@ interface IPeopleResponse {
   vehicles: string[];
 }
 
-export interface MainState {
+export interface IMainState {
   peoples: IPeopleResponse[];
   isLoading: boolean;
 }

@@ -4,10 +4,10 @@ import { Component } from 'react';
 import { Header } from '../../components/header/Header';
 import { Main } from '../../components/main/Main';
 import { Footer } from '../../components/footer/Footer.tsx';
-import type { MainPageProps, MainPageState } from './type.ts';
+import type { IMainPageProps, IMainPageState } from './type.ts';
 
-export class MainPage extends Component<MainPageProps, MainPageState> {
-  constructor(props: MainPageProps) {
+export class MainPage extends Component<IMainPageProps, IMainPageState> {
+  constructor(props: IMainPageProps) {
     super(props);
     this.state = {
       searchValue: '',

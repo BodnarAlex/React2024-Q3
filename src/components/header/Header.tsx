@@ -2,14 +2,11 @@ import type { ReactNode } from 'react';
 import { Component } from 'react';
 import { Search } from '@/components/search/Search.tsx';
 import { ErrorButton } from '@/components/error-button/ErrorButton.tsx';
+import type { IHeaderProps } from './types.ts';
 
 import styles from './styles.module.scss';
 
-interface HeaderProps {
-  onSearchChange: (value: string) => void;
-}
-
-export class Header extends Component<HeaderProps> {
+export class Header extends Component<IHeaderProps> {
   public render(): ReactNode {
     const { onSearchChange } = this.props;
 

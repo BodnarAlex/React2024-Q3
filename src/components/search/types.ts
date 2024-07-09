@@ -1,7 +1,7 @@
-export interface SearchProps {
+export interface ISearchProps {
   onSearchChange: (value: string) => void;
 }
 
-export interface SearchState {
+export interface ISearchState {
   searchValue: string;
 }

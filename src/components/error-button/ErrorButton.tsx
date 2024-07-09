@@ -1,12 +1,10 @@
 import type { ReactNode } from 'react';
 import { Component } from 'react';
 import styles from './styles.module.scss';
+import type { State } from './types.ts';
 
-interface Props {}
-type State = { isError: boolean };
-
-export class ErrorButton extends Component<Props, State> {
-  constructor(props: Props) {
+export class ErrorButton extends Component<object, State> {
+  constructor(props: object) {
     super(props);
     this.state = { isError: false };
   }

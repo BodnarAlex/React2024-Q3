@@ -1,13 +1,13 @@
 import type { ReactNode } from 'react';
 import { Component } from 'react';
 import styles from './styles.module.scss';
-import type { MainState } from '../../api/types.ts';
+import type { IMainState } from '../../api/types.ts';
 import { fetchData } from '../../api/api.ts';
 import { Loader } from '../loader/Loader.tsx';
-import type { MainProps } from './types.ts';
+import type { IMainProps } from './types.ts';
 
-export class Main extends Component<MainProps, MainState> {
-  constructor(props: MainProps) {
+export class Main extends Component<IMainProps, IMainState> {
+  constructor(props: IMainProps) {
     super(props);
     this.state = {
       peoples: [],
@@ -28,7 +28,7 @@ export class Main extends Component<MainProps, MainState> {
     }
   }
 
-  public async componentDidUpdate(prevProps: MainProps): Promise<void> {
+  public async componentDidUpdate(prevProps: IMainProps): Promise<void> {
     const { searchValue } = this.props;
     if (prevProps.searchValue !== searchValue) {
       try {
@@ -51,7 +51,7 @@ export class Main extends Component<MainProps, MainState> {
     }
 
     if (peoples.length === 0) {
-      return <h3 className={styles.name}>Nothing found</h3>;
+      return <h1 className={styles.name}>Nothing found</h1>;
     }
 
     return (

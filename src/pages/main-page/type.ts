@@ -1,5 +1,5 @@
-export interface MainPageProps {}
+export interface IMainPageProps {}
 
-export interface MainPageState {
+export interface IMainPageState {
   searchValue: string;
 }
