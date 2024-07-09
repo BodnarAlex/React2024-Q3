@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/VadimKol/eCommerce-Application.git"
+    "url": "git+https://github.com/BodnarAlex/React2024-Q3"
   },
   "license": "ISC",
-  "homepage": "https://github.com/VadimKol/eCommerce-Application#readme",
+  "homepage": "https://github.com/BodnarAlex/React2024-Q3n#readme",
   "browserslist": [
     "last 2 versions",
     "not dead",
