@@ -1,12 +1,12 @@
-.main {
+.mainError {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 1400px;
-  height: 100dvh;
   margin: 0 auto;
+
+  & .title {
+    padding: 20px 0;
+    color: var(--light-color);
+  }
 
   & .stormtrooper {
     width: 350px;
@@ -21,15 +21,10 @@
     padding-bottom: 40px;
     font-size: 18px;
     font-weight: 700;
-    color: #c39f4b;
+    color: var(--primary-color);
 
     & .detail {
       font-weight: 500;
     }
   }
-}
-
-.header {
-  padding: 20px 0;
-  color: #fcfbe7;
 }

@@ -1,4 +1,3 @@
-import './App.css';
 import type { ReactNode } from 'react';
 import { MainPage } from './pages/main-page/MainPage.tsx';
 

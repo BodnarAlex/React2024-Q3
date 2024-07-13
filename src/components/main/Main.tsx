@@ -36,7 +36,7 @@ export function Main({ searchValue }: IMainProps): ReactNode {
   }
 
   return (
-    <main className={styles.main}>
+    <main className="main">
       {peoples.map((people) => (
         <div key={people.created} className={styles.card}>
           <h3 className={styles.name}>{people.name}</h3>
