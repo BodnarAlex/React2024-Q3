@@ -17,7 +17,7 @@ export function Main({ searchValue }: IMainProps): ReactNode {
     const fetchUpdatedData = async (): Promise<void> => {
       try {
         setIsLoading(true);
-        const response = await fetchData(query, 10);
+        const response = await fetchData(query, 1);
         setPeoples(response.results);
       } catch (error) {
         console.error('Error fetching data:', error);
