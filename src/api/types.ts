@@ -5,7 +5,7 @@ export interface IAllResponse {
   results: IPeopleResponse[];
 }
 
-interface IPeopleResponse {
+export interface IPeopleResponse {
   birth_year: string;
   created: string;
   edited: string;
@@ -22,9 +22,4 @@ interface IPeopleResponse {
   starships: string[];
   url: string;
   vehicles: string[];
-}
-
-export interface IMainState {
-  peoples: IPeopleResponse[];
-  isLoading: boolean;
 }

@@ -1,30 +1,22 @@
-import type { ReactNode } from 'react';
-import { Component } from 'react';
+import { type ReactNode, useState } from 'react';
 import styles from './styles.module.scss';
-import type { State } from './types.ts';
 
-export class ErrorButton extends Component<object, State> {
-  constructor(props: object) {
-    super(props);
-    this.state = { isError: false };
-  }
+export function ErrorButton(): ReactNode {
+  const [isError, setIsError] = useState(false);
 
-  private handleClick = (): void => {
-    this.setState({ isError: true });
+  const handleClick = (): void => {
+    setIsError(true);
   };
 
-  public render(): ReactNode {
-    const { isError } = this.state;
-    if (isError) {
-      throw new Error('Throw error by button');
-    }
-
-    return (
-      <div className={styles.containerButton}>
-        <button className={styles.button} onClick={this.handleClick}>
-          Error
-        </button>
-      </div>
-    );
+  if (isError) {
+    throw new Error('Throw error by button');
   }
+
+  return (
+    <div className={styles.containerButton}>
+      <button className={styles.button} onClick={handleClick}>
+        Error
+      </button>
+    </div>
+  );
 }
