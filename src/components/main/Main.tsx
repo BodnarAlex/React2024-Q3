@@ -5,6 +5,7 @@ import { fetchData } from '../../api/api.ts';
 import { Card } from '../card/Card.tsx';
 import { Loader } from '../loader/Loader.tsx';
 import type { IMainProps } from './types.ts';
+import { Pagination } from '../pagination/Pagination.tsx';
 
 export function Main({ searchValue }: IMainProps): ReactNode {
   const [peoples, setPeoples] = useState<IPeopleResponse[]>([]);
@@ -38,9 +39,12 @@ export function Main({ searchValue }: IMainProps): ReactNode {
 
   return (
     <main className="main">
-      {peoples.map((people) => (
-        <Card key={people.created} person={people} />
-      ))}
+      <div className={styles.cardList}>
+        {peoples.map((people) => (
+          <Card key={people.created} person={people} />
+        ))}
+      </div>
+      <Pagination numberPage={1} maxPage={50} />
     </main>
   );
 }

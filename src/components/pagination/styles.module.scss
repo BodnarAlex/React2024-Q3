@@ -1,0 +1,48 @@
+.pagination {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.blockPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 1500ms;
+
+  &:hover {
+    color: var(--background-color);
+    background-color: var(--primary-color);
+  }
+}
+
+.blockPage.disabled {
+  color: var(--grey-color);
+  border: 1px solid var(--grey-color);
+  cursor: auto;
+
+  &:hover {
+    color: var(--grey-color);
+    background-color: var(--background-color);
+    border: 1px solid var(--grey-color);
+  }
+}
+
+
+.blockPage.active {
+  color: var(--background-color);
+  background-color: var(--primary-color);
+
+  &:hover {
+    color: var(--background-color);
+    background-color: var(--secondary-color);
+  }
+}

@@ -1,27 +1,14 @@
-.card {
-  width: 30%;
-  height: 400px;
-  margin-bottom: 3%;
-  border: 1px solid var(--primary-color);
-}
-
-.name {
-  color: var(--primary-color);
-}
-
-.paragraph {
-  font-weight: 800;
-  color: var(--grey-color);
-
-  & .detail {
-    font-weight: 500;
-    color: var(--light-color);
-  }
-}
-
-@media (width <= 750px) {
-  .card {
-    width: 280px;
-    min-width: 250px;
-  }
+.cardList {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2%;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--max-width);
+  min-height: var(--mid-height);
+  margin: 50px auto;
+  padding: 0 50px;
+  text-align: center;
 }

@@ -39,7 +39,7 @@ body {
 
 .main {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   gap: 2%;
   justify-content: center;
   align-items: center;
@@ -47,7 +47,7 @@ body {
   width: 100%;
   max-width: var(--max-width);
   min-height: var(--mid-height);
-  margin: 50px auto;
+  margin: 10px auto;
   padding: 0 50px;
   text-align: center;
 }
