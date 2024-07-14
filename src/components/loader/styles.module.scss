@@ -1,32 +1,13 @@
-.main {
-  display: flex;
-  flex-flow: row wrap;
-  gap: 2%;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 1400px;
-  min-height: calc(100svh - 285px);
-  margin: 50px auto;
-  padding: 0 50px;
-  text-align: center;
-}
-
-.loader {
+.weapon {
   width: 150px;
   height: 150px;
+  background-image: url("../../assets/images/weapon.png");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
   animation: round 3000ms infinite linear;
-
-  & .weapon {
-    width: 150px;
-    height: 150px;
-    background-image: url("../../assets/images/weapon.png");
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-  }
 }
+
 
 @keyframes round {
   0% {

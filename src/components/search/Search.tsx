@@ -1,41 +1,41 @@
+import { useState } from 'react';
 import type { ReactNode, ChangeEvent, FormEvent } from 'react';
-import { Component } from 'react';
-import type { ISearchProps, ISearchState } from './types.ts';
+import { useSearchParams } from 'react-router-dom';
+import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
 
 import styles from './styles.module.scss';
 
-export class Search extends Component<ISearchProps, ISearchState> {
-  constructor(props: ISearchProps) {
-    super(props);
-    this.state = { searchValue: localStorage.getItem('searchString') || '' };
-  }
+export function Search(): ReactNode {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useLocalStorage(
+    searchParams.get('search') || '',
+  );
+  const [inputValue, setInputValue] = useState<string>(searchValue);
 
-  private handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    this.setState({ searchValue: event.target.value });
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(event.target.value);
   };
 
-  private handleSubmit = (event: FormEvent): void => {
+  const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    const { searchValue } = this.state;
-    const { onSearchChange } = this.props;
-    localStorage.setItem('searchString', searchValue);
-    onSearchChange(searchValue);
+    setSearchValue(inputValue);
+    setSearchParams({ page: '1', search: inputValue });
   };
 
-  public render(): ReactNode {
-    const { searchValue } = this.state;
-
-    return (
-      <form className={styles.search_box} onSubmit={this.handleSubmit}>
-        <input
-          className={styles.search}
-          type="text"
-          placeholder="Search..."
-          value={searchValue}
-          onChange={this.handleInputChange}
-        />
-        <button type="submit" className={styles.search_button} aria-label="Search-button" />
-      </form>
-    );
-  }
+  return (
+    <form className={styles.search_box} onSubmit={handleSubmit}>
+      <input
+        className={styles.search}
+        type='text'
+        placeholder='Search...'
+        value={inputValue}
+        onChange={handleInputChange}
+      />
+      <button
+        type='submit'
+        className={styles.search_button}
+        aria-label='Search-button'
+      />
+    </form>
+  );
 }

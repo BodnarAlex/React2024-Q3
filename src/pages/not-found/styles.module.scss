@@ -1,0 +1,43 @@
+.title {
+  padding: 20px 0;
+  color: var(--light-color);
+}
+
+.dart {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  margin-bottom: 50px;
+  background-image: url("../../assets/images/404.png");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.error {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 50px;
+  font-weight: 800;
+  color: var(--light-color);
+}
+
+.refreshBtn {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  color: var(--background-color);
+  background-color: var(--light-color);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 500ms;
+
+  &:hover {
+    color: var(--background-color);
+    background-color: var(--secondary-color);
+  }
+}

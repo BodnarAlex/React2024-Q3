@@ -1,0 +1,44 @@
+.detailCard {
+  position: relative;
+  width: 300px;
+  height: max-content;
+  padding: 0 10px 10px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 5px 9px;
+  background-color: var(--light-color);
+  transition: all 500ms;
+
+  &:hover {
+    background-color: var(--secondary-color);
+  }
+}
+
+.name {
+  padding-bottom: 10px;
+  color: var(--background-color);
+  border-bottom: 1px solid var(--background-color);
+}
+
+.paragraph {
+  font-weight: 800;
+  color: var(--background-color);
+
+  & .detail {
+    font-weight: 500;
+    color: var(--light-color);
+  }
+}
+
+@media (width <= 750px) {
+  .card {
+    width: 280px;
+    min-width: 250px;
+  }
+}

@@ -4,12 +4,12 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--max-width);
   height: 50px;
   margin: 0 auto;
   padding: 20px 0;
-  background: #100f13;
-  border-bottom: 2px solid #fcfbe7;
+  background: var(--background-color);
+  border-bottom: 2px solid var(--light-color);
 }
 
 .container {

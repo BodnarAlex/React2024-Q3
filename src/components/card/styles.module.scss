@@ -1,0 +1,33 @@
+.card {
+  min-width: 250px;
+  max-width: 300px;
+  height: 275px;
+  margin-bottom: 3%;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  transition: all 500ms;
+
+  &:hover {
+    box-shadow: 0 0 6px 3px var(--primary-color);
+  }
+}
+
+.name {
+  color: var(--primary-color);
+}
+
+.paragraph {
+  font-weight: 800;
+  color: var(--grey-color);
+
+  & .detail {
+    font-weight: 500;
+    color: var(--light-color);
+  }
+}
+
+@media (width <= 1100px) {
+  .card {
+    width: 280px;
+  }
+}
