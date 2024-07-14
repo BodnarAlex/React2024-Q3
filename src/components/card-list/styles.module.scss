@@ -10,11 +10,11 @@
   justify-content: center;
   align-items: start;
   box-sizing: border-box;
-  width: 100%;
+  width: 80%;
   max-width: var(--max-width);
   min-height: var(--mid-height);
   margin: 10px auto;
-  padding: 0 50px;
+  padding: 0 20px 20px;
   text-align: center;
 }
 
@@ -30,9 +30,5 @@
     flex-flow: column-reverse nowrap;
     gap: 20px;
     align-items: center;
-  }
-
-  .cardList {
-    padding: 0;
   }
 }

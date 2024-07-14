@@ -1,28 +1,26 @@
-import { type ReactNode, useState, useEffect } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import type { ReactNode } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation, useSearchParams, Outlet, Link, useNavigate } from 'react-router-dom'; // Import Link
 import { NotFound } from '@/pages/not-found/NotFound.tsx';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
-
 import { fetchData } from '../../api/api.ts';
 import { Card } from '../card/Card.tsx';
 import { Loader } from '../loader/Loader.tsx';
 import type { IMainProps } from './types.ts';
 import { Pagination } from '../pagination/Pagination.tsx';
-import { DetailedCard } from '../detailed-card/DetailedCard.tsx';
 
 export function CardList({ searchValue }: IMainProps): ReactNode {
   const [peoples, setPeoples] = useState<IPeopleResponse[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [maxPage, setMaxPage] = useState<number>(1);
   const [statistic, setStatistic] = useState<string>('0 / 0');
-  const [selectedPerson, setSelectedPerson] = useState<IPeopleResponse | undefined>(undefined);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const location = useLocation();
   const cardsOnPage = 10;
   const currentPage: number = Number(new URLSearchParams(location.search).get('page')) || 1;
-  const detailsName = searchParams.get('details');
 
   useEffect(() => {
     const localSearch = localStorage.getItem('searchString') || '';
@@ -44,33 +42,17 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
     void fetchUpdatedData();
   }, [searchValue, currentPage]);
 
-  useEffect(() => {
-    const fetchDetails = async (): Promise<void> => {
-      if (detailsName) {
-        try {
-          setIsLoading(true);
-          const person = await fetchData(detailsName, 1);
-          setSelectedPerson(person.results.at(0));
-        } catch (error) {
-          console.error('Error fetching person details:', error);
-        } finally {
-          setIsLoading(false);
-        }
-      } else {
-        setSelectedPerson(undefined);
-      }
-    };
-
-    void fetchDetails();
-  }, [detailsName]);
-
-  const handleCardClick = (person: IPeopleResponse): void => {
-    setSearchParams({ page: String(currentPage), search: searchValue, details: person.name });
+  const handleCardClick = (): void => {
+    setSearchParams({ page: String(currentPage), search: searchValue });
   };
 
-  const handleCloseDetails = (): void => {
-    if (selectedPerson) {
-      setSearchParams({ page: String(currentPage), search: searchValue });
+  const handleCloseButtonClick = (): void => {
+    if (location.pathname.includes('/details/')) {
+      const params = new URLSearchParams(location.search);
+      navigate({
+        pathname: '/',
+        search: params.toString(),
+      });
     }
   };
 
@@ -90,12 +72,17 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
     <main className="main">
       <p className={styles.itemInfo}>{statistic}</p>
       <div className={styles.commonBlock}>
-        <div className={styles.cardList} onClick={handleCloseDetails}>
+        <div className={styles.cardList} onClick={handleCloseButtonClick}>
           {peoples.map((people) => (
-            <Card key={people.created} person={people} onClick={() => handleCardClick(people)} />
+            <Link
+              key={people.created}
+              to={`/details/${encodeURIComponent(people.name)}?page=${currentPage}&search=${searchValue}`}
+            >
+              <Card person={people} onClick={() => handleCardClick()} />
+            </Link>
           ))}
         </div>
-        {selectedPerson && <DetailedCard person={selectedPerson} onClose={handleCloseDetails} />}
+        <Outlet />
       </div>
       {peoples && <Pagination numberPage={currentPage} maxPage={maxPage} searchValue={searchValue} />}
     </main>

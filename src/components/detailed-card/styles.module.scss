@@ -12,6 +12,12 @@
   top: 5px;
   right: 5px;
   padding: 5px 9px;
+  background-color: var(--light-color);
+  transition: all 500ms;
+
+  &:hover {
+    background-color: var(--secondary-color);
+  }
 }
 
 .name {
