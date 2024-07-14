@@ -69,7 +69,9 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
   };
 
   const handleCloseDetails = (): void => {
-    setSearchParams({ page: String(currentPage), search: searchValue });
+    if (selectedPerson) {
+      setSearchParams({ page: String(currentPage), search: searchValue });
+    }
   };
 
   if (isLoading) {
@@ -88,7 +90,7 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
     <main className="main">
       <p className={styles.itemInfo}>{statistic}</p>
       <div className={styles.commonBlock}>
-        <div className={styles.cardList}>
+        <div className={styles.cardList} onClick={handleCloseDetails}>
           {peoples.map((people) => (
             <Card key={people.created} person={people} onClick={() => handleCardClick(people)} />
           ))}
