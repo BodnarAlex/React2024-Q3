@@ -1,8 +1,8 @@
-import { render, screen } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
-import { App } from "../App"; // Adjust the import path based on your project structure
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { App } from '../App'; // Adjust the import path based on your project structure
 
-test("should have hello world", () => {
+test('should have hello world', () => {
   render(
     <BrowserRouter>
       <App />

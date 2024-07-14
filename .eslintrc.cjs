@@ -37,9 +37,13 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   rules: {
+    "quotes": ['error', 'single', { 'avoidEscape': true }],
     "@typescript-eslint/no-explicit-any": "error",
     "react-compiler/react-compiler": "error",
-    "prettier/prettier": "error",
+    "prettier/prettier": ['error', {
+      'singleQuote': true,
+      'jsxSingleQuote': true
+    }],
     "no-console": ["error", { allow: ["warn", "error"] }],
     "no-void": ["error", { allowAsStatement: true }],
     "react-refresh/only-export-components": [

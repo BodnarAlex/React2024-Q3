@@ -1,14 +1,14 @@
-import type { ErrorInfo, ReactNode } from "react";
-import { Component } from "react";
-import type { Props, State } from "./types.ts";
-import { ErrorPage } from "../../pages/error-page/ErrorPage.tsx";
+import type { ErrorInfo, ReactNode } from 'react';
+import { Component } from 'react';
+import type { Props, State } from './types.ts';
+import { ErrorPage } from '../../pages/error-page/ErrorPage.tsx';
 
 export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
       hasError: false,
-      errorMessage: "",
+      errorMessage: '',
     };
   }
 
@@ -20,7 +20,7 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   public componentDidCatch(error: Error, info: ErrorInfo): void {
-    const errorContent = `Error boundary: ${error.message} ${info.componentStack || ""}`;
+    const errorContent = `Error boundary: ${error.message} ${info.componentStack || ''}`;
     console.error(errorContent);
   }
 

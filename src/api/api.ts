@@ -1,4 +1,4 @@
-import type { IAllResponse } from "./types.ts";
+import type { IAllResponse } from './types.ts';
 
 export async function fetchData(
   searchText: string,

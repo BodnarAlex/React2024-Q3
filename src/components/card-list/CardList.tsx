@@ -1,36 +1,36 @@
-import type { ReactNode } from "react";
-import { useState, useEffect } from "react";
+import type { ReactNode } from 'react';
+import { useState, useEffect } from 'react';
 import {
   useLocation,
   useSearchParams,
   Outlet,
   Link,
   useNavigate,
-} from "react-router-dom"; // Import Link
-import { NotFound } from "@/pages/not-found/NotFound.tsx";
-import styles from "./styles.module.scss";
-import type { IPeopleResponse } from "../../api/types.ts";
-import { useLocalStorage } from "../../hooks/useLocalStorage.ts";
-import { fetchData } from "../../api/api.ts";
-import { Card } from "../card/Card.tsx";
-import { Loader } from "../loader/Loader.tsx";
-import { Pagination } from "../pagination/Pagination.tsx";
+} from 'react-router-dom'; // Import Link
+import { NotFound } from '@/pages/not-found/NotFound.tsx';
+import styles from './styles.module.scss';
+import type { IPeopleResponse } from '../../api/types.ts';
+import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
+import { fetchData } from '../../api/api.ts';
+import { Card } from '../card/Card.tsx';
+import { Loader } from '../loader/Loader.tsx';
+import { Pagination } from '../pagination/Pagination.tsx';
 
 export function CardList(): ReactNode {
   const [peoples, setPeoples] = useState<IPeopleResponse[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [maxPage, setMaxPage] = useState<number>(1);
-  const [statistic, setStatistic] = useState<string>("0 / 0");
+  const [statistic, setStatistic] = useState<string>('0 / 0');
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const location = useLocation();
   const cardsOnPage = 10;
   const currentPage: number =
-    Number(new URLSearchParams(location.search).get("page")) || 1;
+    Number(new URLSearchParams(location.search).get('page')) || 1;
 
-  const [searchQuery] = useLocalStorage("");
-  const searchValue = searchParams.get("search") || searchQuery;
+  const [searchQuery] = useLocalStorage('');
+  const searchValue = searchParams.get('search') || searchQuery;
 
   useEffect(() => {
     const query = searchValue;
@@ -42,7 +42,7 @@ export function CardList(): ReactNode {
         setStatistic(`${response.results.length} / ${response.count}`);
         setPeoples(response.results);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       } finally {
         setIsLoading(false);
       }
@@ -56,10 +56,10 @@ export function CardList(): ReactNode {
   };
 
   const handleCloseButtonClick = (): void => {
-    if (location.pathname.includes("/details/")) {
+    if (location.pathname.includes('/details/')) {
       const params = new URLSearchParams(location.search);
       navigate({
-        pathname: "/",
+        pathname: '/',
         search: params.toString(),
       });
     }
@@ -78,7 +78,7 @@ export function CardList(): ReactNode {
   }
 
   return (
-    <main className="main">
+    <main className='main'>
       <p className={styles.itemInfo}>{statistic}</p>
       <div className={styles.commonBlock}>
         <div className={styles.cardList} onClick={handleCloseButtonClick}>
