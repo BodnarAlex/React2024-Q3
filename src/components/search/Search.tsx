@@ -1,19 +1,23 @@
-import type { ReactNode, ChangeEvent, FormEvent } from 'react';
 import { useState } from 'react';
-import type { ISearchProps } from './types.ts';
+import type { ReactNode, ChangeEvent, FormEvent } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
+
 import styles from './styles.module.scss';
 
-export function Search({ onSearchChange }: ISearchProps): ReactNode {
-  const [searchValue, setSearchValue] = useState<string>(localStorage.getItem('searchString') || '');
+export function Search(): ReactNode {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchValue, setSearchValue] = useLocalStorage(searchParams.get('search') || '');
+  const [inputValue, setInputValue] = useState<string>(searchValue);
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSearchValue(event.target.value);
+    setInputValue(event.target.value);
   };
 
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    localStorage.setItem('searchString', searchValue);
-    onSearchChange(searchValue);
+    setSearchValue(inputValue);
+    setSearchParams({ page: '1', search: inputValue });
   };
 
   return (
@@ -22,7 +26,7 @@ export function Search({ onSearchChange }: ISearchProps): ReactNode {
         className={styles.search}
         type="text"
         placeholder="Search..."
-        value={searchValue}
+        value={inputValue}
         onChange={handleInputChange}
       />
       <button type="submit" className={styles.search_button} aria-label="Search-button" />

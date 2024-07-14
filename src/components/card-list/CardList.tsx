@@ -4,27 +4,29 @@ import { useLocation, useSearchParams, Outlet, Link, useNavigate } from 'react-r
 import { NotFound } from '@/pages/not-found/NotFound.tsx';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
+import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
 import { fetchData } from '../../api/api.ts';
 import { Card } from '../card/Card.tsx';
 import { Loader } from '../loader/Loader.tsx';
-import type { IMainProps } from './types.ts';
 import { Pagination } from '../pagination/Pagination.tsx';
 
-export function CardList({ searchValue }: IMainProps): ReactNode {
+export function CardList(): ReactNode {
   const [peoples, setPeoples] = useState<IPeopleResponse[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [maxPage, setMaxPage] = useState<number>(1);
   const [statistic, setStatistic] = useState<string>('0 / 0');
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   const location = useLocation();
   const cardsOnPage = 10;
   const currentPage: number = Number(new URLSearchParams(location.search).get('page')) || 1;
 
+  const [searchQuery] = useLocalStorage('');
+  const searchValue = searchParams.get('search') || searchQuery;
+
   useEffect(() => {
-    const localSearch = localStorage.getItem('searchString') || '';
-    const query = searchValue || localSearch;
+    const query = searchValue;
     const fetchUpdatedData = async (): Promise<void> => {
       try {
         setIsLoading(true);
@@ -40,10 +42,10 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
     };
 
     void fetchUpdatedData();
-  }, [searchValue, currentPage]);
+  }, [searchQuery, currentPage, searchValue]);
 
   const handleCardClick = (): void => {
-    setSearchParams({ page: String(currentPage), search: searchValue });
+    setSearchParams({ page: String(currentPage), search: searchQuery });
   };
 
   const handleCloseButtonClick = (): void => {
@@ -76,7 +78,7 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
           {peoples.map((people) => (
             <Link
               key={people.created}
-              to={`/details/${encodeURIComponent(people.name)}?page=${currentPage}&search=${searchValue}`}
+              to={`/details/${encodeURIComponent(people.name)}?page=${currentPage}&search=${searchQuery}`}
             >
               <Card person={people} onClick={() => handleCardClick()} />
             </Link>
@@ -84,7 +86,7 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
         </div>
         <Outlet />
       </div>
-      {peoples && <Pagination numberPage={currentPage} maxPage={maxPage} searchValue={searchValue} />}
+      {peoples && <Pagination numberPage={currentPage} maxPage={maxPage} searchValue={searchQuery} />}
     </main>
   );
 }
