@@ -1,5 +1,5 @@
 import { type ReactNode, useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { NotFound } from '@/pages/not-found/NotFound.tsx';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
@@ -9,16 +9,20 @@ import { Card } from '../card/Card.tsx';
 import { Loader } from '../loader/Loader.tsx';
 import type { IMainProps } from './types.ts';
 import { Pagination } from '../pagination/Pagination.tsx';
+import { DetailedCard } from '../detailed-card/DetailedCard.tsx';
 
 export function CardList({ searchValue }: IMainProps): ReactNode {
   const [peoples, setPeoples] = useState<IPeopleResponse[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [maxPage, setMaxPage] = useState<number>(1);
   const [statistic, setStatistic] = useState<string>('0 / 0');
+  const [selectedPerson, setSelectedPerson] = useState<IPeopleResponse | undefined>(undefined);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const location = useLocation();
   const cardsOnPage = 10;
   const currentPage: number = Number(new URLSearchParams(location.search).get('page')) || 1;
+  const detailsName = searchParams.get('details');
 
   useEffect(() => {
     const localSearch = localStorage.getItem('searchString') || '';
@@ -40,6 +44,34 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
     void fetchUpdatedData();
   }, [searchValue, currentPage]);
 
+  useEffect(() => {
+    const fetchDetails = async (): Promise<void> => {
+      if (detailsName) {
+        try {
+          setIsLoading(true);
+          const person = await fetchData(detailsName, 1);
+          setSelectedPerson(person.results.at(0));
+        } catch (error) {
+          console.error('Error fetching person details:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      } else {
+        setSelectedPerson(undefined);
+      }
+    };
+
+    void fetchDetails();
+  }, [detailsName]);
+
+  const handleCardClick = (person: IPeopleResponse): void => {
+    setSearchParams({ page: String(currentPage), search: searchValue, details: person.name });
+  };
+
+  const handleCloseDetails = (): void => {
+    setSearchParams({ page: String(currentPage), search: searchValue });
+  };
+
   if (isLoading) {
     return <Loader />;
   }
@@ -58,12 +90,12 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
       <div className={styles.commonBlock}>
         <div className={styles.cardList}>
           {peoples.map((people) => (
-            <Card key={people.created} person={people} />
+            <Card key={people.created} person={people} onClick={() => handleCardClick(people)} />
           ))}
         </div>
+        {selectedPerson && <DetailedCard person={selectedPerson} onClose={handleCloseDetails} />}
       </div>
-
-      <Pagination numberPage={currentPage} maxPage={maxPage} searchValue={searchValue} />
+      {peoples && <Pagination numberPage={currentPage} maxPage={maxPage} searchValue={searchValue} />}
     </main>
   );
 }
