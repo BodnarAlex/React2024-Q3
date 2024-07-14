@@ -7,8 +7,6 @@ export function App(): ReactNode {
   return (
     <Routes>
       <Route path="/" element={<MainPage />} />
-      <Route path="/:page" element={<MainPage />} />
-      <Route path="/:page/:id" element={<NotFound />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

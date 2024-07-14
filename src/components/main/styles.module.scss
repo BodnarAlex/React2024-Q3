@@ -8,7 +8,14 @@
   width: 100%;
   max-width: var(--max-width);
   min-height: var(--mid-height);
-  margin: 50px auto;
+  margin: 10px auto;
   padding: 0 50px;
   text-align: center;
+}
+
+.itemInfo {
+  width: 85%;
+  font-size: 18px;
+  text-align: right;
+  color: var(--light-color);
 }

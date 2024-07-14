@@ -1,6 +1,8 @@
 import { type ReactNode, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
+
 import { fetchData } from '../../api/api.ts';
 import { Card } from '../card/Card.tsx';
 import { Loader } from '../loader/Loader.tsx';
@@ -10,6 +12,12 @@ import { Pagination } from '../pagination/Pagination.tsx';
 export function Main({ searchValue }: IMainProps): ReactNode {
   const [peoples, setPeoples] = useState<IPeopleResponse[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [maxPage, setMaxPage] = useState<number>(1);
+  const [statiscic, setStatiscic] = useState<string>('0 / 0');
+
+  const location = useLocation();
+  const cardsOnPage = 10;
+  const currentPage: number = Number(new URLSearchParams(location.search).get('page')) || 1;
 
   useEffect(() => {
     const localSearch = localStorage.getItem('searchString') || '';
@@ -17,7 +25,9 @@ export function Main({ searchValue }: IMainProps): ReactNode {
     const fetchUpdatedData = async (): Promise<void> => {
       try {
         setIsLoading(true);
-        const response = await fetchData(query, 1);
+        const response = await fetchData(query, currentPage);
+        setMaxPage(Math.ceil(response.count / cardsOnPage));
+        setStatiscic(`${cardsOnPage} / ${response.count}`);
         setPeoples(response.results);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -27,7 +37,7 @@ export function Main({ searchValue }: IMainProps): ReactNode {
     };
 
     void fetchUpdatedData();
-  }, [searchValue]);
+  }, [searchValue, currentPage]);
 
   if (isLoading) {
     return <Loader />;
@@ -39,12 +49,13 @@ export function Main({ searchValue }: IMainProps): ReactNode {
 
   return (
     <main className="main">
+      <p className={styles.itemInfo}>{statiscic}</p>
       <div className={styles.cardList}>
         {peoples.map((people) => (
           <Card key={people.created} person={people} />
         ))}
       </div>
-      <Pagination numberPage={1} maxPage={50} />
+      <Pagination numberPage={currentPage} maxPage={maxPage} />
     </main>
   );
 }

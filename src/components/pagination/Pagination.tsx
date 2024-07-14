@@ -1,78 +1,71 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 import type { ICardProps } from './types.ts';
 
 export function Pagination({ numberPage, maxPage }: ICardProps): ReactNode {
-  const [currentPage, setCurrentPage] = useState(numberPage);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const currentPage: number = Number(new URLSearchParams(location.search).get('page')) || numberPage;
+
+  useEffect(() => {
+    if (!location.search.includes('page')) {
+      navigate(`/?page=${currentPage}`);
+    }
+  }, [currentPage, location.search, navigate]);
+
   const pages: ReactNode[] = [];
   const numAdjacentPages = 1;
 
-  for (let i = Math.max(1, currentPage - numAdjacentPages); i < currentPage; i += 1) {
-    pages.push(
-      <div key={i} className={styles.blockPage} onClick={() => setCurrentPage(i)}>
-        {i}
-      </div>,
-    );
-  }
+  const updatePage = (page: number): void => {
+    navigate(`/?page=${page}`);
+  };
 
-  pages.push(
-    <div key={currentPage} className={classNames(styles.blockPage, styles.active)}>
-      {currentPage}
-    </div>,
+  const createPageLink = (page: number, active = false, notDefault: string | undefined = undefined): ReactNode => (
+    <Link key={page} to={`/?page=${page}`} onClick={() => updatePage(page)}>
+      <div className={classNames(styles.blockPage, { [styles.active as string]: active })}>{notDefault || page}</div>
+    </Link>
   );
 
+  for (let i = Math.max(1, currentPage - numAdjacentPages); i < currentPage; i += 1) {
+    pages.push(createPageLink(i));
+  }
+
+  pages.push(createPageLink(currentPage, true));
+
   for (let i = currentPage + 1; i <= Math.min(maxPage, currentPage + numAdjacentPages); i += 1) {
-    pages.push(
-      <div key={i} className={styles.blockPage} onClick={() => setCurrentPage(i)}>
-        {i}
-      </div>,
-    );
+    pages.push(createPageLink(i));
   }
 
   if (currentPage > numAdjacentPages + 1) {
-    pages.unshift(
-      <div key="first" className={styles.blockPage} onClick={() => setCurrentPage(1)}>
-        1
-      </div>,
-    );
+    pages.unshift(createPageLink(1));
+
     if (currentPage > numAdjacentPages + 2) {
       const toPage = Math.floor((currentPage + 1) / 2);
-      pages.splice(
-        1,
-        0,
-        <div key="left" className={styles.blockPage} onClick={() => setCurrentPage(toPage)}>
-          ...
-        </div>,
-      );
+      pages.splice(1, 0, createPageLink(toPage, false, '...'));
     }
   }
 
   if (currentPage < maxPage - numAdjacentPages) {
     const toPage = Math.floor((currentPage + maxPage) / 2);
     if (currentPage < maxPage - numAdjacentPages - 1) {
-      pages.push(
-        <div key="right" className={styles.blockPage} onClick={() => setCurrentPage(toPage)}>
-          ...
-        </div>,
-      );
+      pages.push(createPageLink(toPage, false, '...'));
     }
-    pages.push(
-      <div key="last" className={styles.blockPage} onClick={() => setCurrentPage(maxPage)}>
-        {maxPage}
-      </div>,
-    );
+    pages.push(createPageLink(maxPage));
   }
 
   const handlePreviousClick = (): void => {
     if (currentPage > 1) {
-      setCurrentPage((prev) => prev - 1);
+      updatePage(currentPage - 1);
     }
   };
 
   const handleNextClick = (): void => {
     if (currentPage < maxPage) {
-      setCurrentPage((prev) => prev + 1);
+      updatePage(currentPage + 1);
     }
   };
 
