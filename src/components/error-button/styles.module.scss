@@ -28,3 +28,10 @@
     background-color: var(--secondary-color);
   }
 }
+
+@media (width <= 400px) {
+  .containerButton,
+  .container {
+    width: 100px;
+  }
+}

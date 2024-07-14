@@ -36,7 +36,6 @@
   }
 }
 
-
 .blockPage.active {
   color: var(--background-color);
   background-color: var(--primary-color);
@@ -44,5 +43,11 @@
   &:hover {
     color: var(--background-color);
     background-color: var(--secondary-color);
+  }
+}
+
+@media (width <= 400px) {
+  .blockPage {
+    width: 30px;
   }
 }
