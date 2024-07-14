@@ -1,5 +1,6 @@
 import { type ReactNode, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { NotFound } from '@/pages/not-found/NotFound.tsx';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
 
@@ -41,6 +42,10 @@ export function Main({ searchValue }: IMainProps): ReactNode {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (!peoples) {
+    return <NotFound />;
   }
 
   if (peoples.length === 0) {

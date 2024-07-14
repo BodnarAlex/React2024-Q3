@@ -25,3 +25,19 @@
   font-weight: 800;
   color: var(--light-color);
 }
+
+.refreshBtn {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  color: var(--background-color);
+  background-color: var(--light-color);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 500ms;
+
+  &:hover {
+    color: var(--background-color);
+    background-color: var(--secondary-color);
+  }
+}

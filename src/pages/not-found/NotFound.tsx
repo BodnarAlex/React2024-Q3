@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 export function NotFound(): ReactNode {
@@ -8,9 +9,9 @@ export function NotFound(): ReactNode {
       <div className={styles.dart}>
         <div className={styles.error}>404</div>
       </div>
-      <button className={styles.refreshBtn} type="button">
+      <Link to="/" className={styles.refreshBtn}>
         Return on other side
-      </button>
+      </Link>
     </main>
   );
 }
