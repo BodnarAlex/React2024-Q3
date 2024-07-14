@@ -10,11 +10,11 @@ import { Loader } from '../loader/Loader.tsx';
 import type { IMainProps } from './types.ts';
 import { Pagination } from '../pagination/Pagination.tsx';
 
-export function Main({ searchValue }: IMainProps): ReactNode {
+export function CardList({ searchValue }: IMainProps): ReactNode {
   const [peoples, setPeoples] = useState<IPeopleResponse[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [maxPage, setMaxPage] = useState<number>(1);
-  const [statiscic, setStatiscic] = useState<string>('0 / 0');
+  const [statistic, setStatistic] = useState<string>('0 / 0');
 
   const location = useLocation();
   const cardsOnPage = 10;
@@ -28,7 +28,7 @@ export function Main({ searchValue }: IMainProps): ReactNode {
         setIsLoading(true);
         const response = await fetchData(query, currentPage);
         setMaxPage(Math.ceil(response.count / cardsOnPage));
-        setStatiscic(`${cardsOnPage} / ${response.count}`);
+        setStatistic(`${response.results.length} / ${response.count}`);
         setPeoples(response.results);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -54,13 +54,13 @@ export function Main({ searchValue }: IMainProps): ReactNode {
 
   return (
     <main className="main">
-      <p className={styles.itemInfo}>{statiscic}</p>
+      <p className={styles.itemInfo}>{statistic}</p>
       <div className={styles.cardList}>
         {peoples.map((people) => (
           <Card key={people.created} person={people} />
         ))}
       </div>
-      <Pagination numberPage={currentPage} maxPage={maxPage} />
+      <Pagination numberPage={currentPage} maxPage={maxPage} searchValue={searchValue} />
     </main>
   );
 }

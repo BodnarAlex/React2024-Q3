@@ -1,20 +1,23 @@
-import { type ReactNode, useState } from 'react';
+import { type ReactNode } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import { Header } from '../../components/header/Header';
-import { Main } from '../../components/main/Main';
+import { CardList } from '../../components/card-list/CardList.tsx';
 import { Footer } from '../../components/footer/Footer.tsx';
 
 export function MainPage(): ReactNode {
-  const [searchValue, setSearchValue] = useState<string>('');
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const handleSearchChange = (value: string): void => {
-    setSearchValue(value);
+    setSearchParams({ search: value });
   };
+
+  const searchValue = searchParams.get('search') || '';
 
   return (
     <>
       <Header onSearchChange={handleSearchChange} />
-      <Main searchValue={searchValue} />
+      <CardList searchValue={searchValue} />
       <Footer />
     </>
   );

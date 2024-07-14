@@ -1,31 +1,28 @@
 import { type ReactNode, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
 import classNames from 'classnames';
 import styles from './styles.module.scss';
 import type { ICardProps } from './types.ts';
 
-export function Pagination({ numberPage, maxPage }: ICardProps): ReactNode {
+export function Pagination({ numberPage, maxPage, searchValue }: ICardProps): ReactNode {
   const location = useLocation();
   const navigate = useNavigate();
-
   const currentPage: number = Number(new URLSearchParams(location.search).get('page')) || numberPage;
-
-  useEffect(() => {
-    if (!location.search.includes('page')) {
-      navigate(`/?page=${currentPage}`);
-    }
-  }, [currentPage, location.search, navigate]);
-
   const pages: ReactNode[] = [];
   const numAdjacentPages = 1;
 
+  useEffect(() => {
+    if (!location.search.includes('page')) {
+      navigate(`/?page=${currentPage}&search=${searchValue}`);
+    }
+  }, [currentPage, location.search, navigate, searchValue]);
+
   const updatePage = (page: number): void => {
-    navigate(`/?page=${page}`);
+    navigate(`/?page=${page}&search=${searchValue}`);
   };
 
   const createPageLink = (page: number, active = false, notDefault: string | undefined = undefined): ReactNode => (
-    <Link key={page} to={`/?page=${page}`} onClick={() => updatePage(page)}>
+    <Link key={page} to={`/?page=${page}&search=${searchValue}`} onClick={() => updatePage(page)}>
       <div className={classNames(styles.blockPage, { [styles.active as string]: active })}>{notDefault || page}</div>
     </Link>
   );
