@@ -1,8 +1,6 @@
 import type { ReactNode, ChangeEvent, FormEvent } from 'react';
 import { useState } from 'react';
-
 import type { ISearchProps } from './types.ts';
-
 import styles from './styles.module.scss';
 
 export function Search({ onSearchChange }: ISearchProps): ReactNode {

@@ -55,11 +55,14 @@ export function CardList({ searchValue }: IMainProps): ReactNode {
   return (
     <main className="main">
       <p className={styles.itemInfo}>{statistic}</p>
-      <div className={styles.cardList}>
-        {peoples.map((people) => (
-          <Card key={people.created} person={people} />
-        ))}
+      <div className={styles.commonBlock}>
+        <div className={styles.cardList}>
+          {peoples.map((people) => (
+            <Card key={people.created} person={people} />
+          ))}
+        </div>
       </div>
+
       <Pagination numberPage={currentPage} maxPage={maxPage} searchValue={searchValue} />
     </main>
   );

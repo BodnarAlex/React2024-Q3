@@ -1,3 +1,8 @@
+.commonBlock {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .cardList {
   display: flex;
   flex-flow: row wrap;
