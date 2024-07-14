@@ -6,7 +6,7 @@ import {
   Outlet,
   Link,
   useNavigate,
-} from 'react-router-dom'; // Import Link
+} from 'react-router-dom';
 import { NotFound } from '@/pages/not-found/NotFound.tsx';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';

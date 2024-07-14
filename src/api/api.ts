@@ -5,7 +5,7 @@ export async function fetchData(
   perPage: number,
 ): Promise<IAllResponse> {
   const response = await fetch(
-    `https://swapi.dev/api/people/?search=${searchText}&page=${perPage}&limit=${5}`,
+    `https://swapi.dev/api/people/?search=${searchText}&page=${perPage}`,
   );
   return (await response.json()) as Promise<IAllResponse>;
 }

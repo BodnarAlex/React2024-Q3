@@ -13,7 +13,8 @@ export default defineConfig({
     checker({
       typescript: true,
       stylelint: {
-        lintCommand: 'stylelint ./src/**/*.{css,scss} --quiet-deprecation-warnings',
+        lintCommand:
+          'stylelint ./src/**/*.{css,scss} --quiet-deprecation-warnings',
       },
       eslint: {
         lintCommand: 'eslint "./src/**/*.{ts,tsx}"',

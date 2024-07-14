@@ -42,7 +42,11 @@ module.exports = {
     "react-compiler/react-compiler": "error",
     "prettier/prettier": ['error', {
       'singleQuote': true,
-      'jsxSingleQuote': true
+      'jsxSingleQuote': true,
+      'trailingComma': 'all',
+      'printWidth': 80,
+      'tabWidth': 2,
+      'semi': true
     }],
     "no-console": ["error", { allow: ["warn", "error"] }],
     "no-void": ["error", { allowAsStatement: true }],
