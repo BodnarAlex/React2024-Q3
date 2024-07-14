@@ -1,10 +1,10 @@
-import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
-import styles from './styles.module.scss';
-import type { IPeopleResponse } from '../../api/types.ts';
-import { fetchData } from '../../api/api.ts';
-import { Loader } from '../loader/Loader.tsx';
+import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import styles from "./styles.module.scss";
+import type { IPeopleResponse } from "../../api/types.ts";
+import { fetchData } from "../../api/api.ts";
+import { Loader } from "../loader/Loader.tsx";
 
 export function DetailedCard(): ReactNode {
   const { details } = useParams();
@@ -25,7 +25,7 @@ export function DetailedCard(): ReactNode {
             setPerson(undefined);
           }
         } catch (error) {
-          console.error('Error fetching person details:', error);
+          console.error("Error fetching person details:", error);
           setPerson(undefined);
         } finally {
           setIsLoading(false);
@@ -37,10 +37,10 @@ export function DetailedCard(): ReactNode {
   }, [details]);
 
   const handleCloseButtonClick = (): void => {
-    if (location.pathname.includes('/details/')) {
+    if (location.pathname.includes("/details/")) {
       const params = new URLSearchParams(location.search);
       navigate({
-        pathname: '/',
+        pathname: "/",
         search: params.toString(),
       });
     }
@@ -55,18 +55,22 @@ export function DetailedCard(): ReactNode {
   }
 
   const cardInfo = [
-    { key: '1', label: 'Mass', value: person.mass },
-    { key: '2', label: 'Height', value: person.height },
-    { key: '3', label: 'Gender', value: person.gender },
-    { key: '4', label: 'Hair Color', value: person.hair_color },
-    { key: '5', label: 'Eye Color', value: person.eye_color },
-    { key: '6', label: 'Skin Color', value: person.skin_color },
-    { key: '7', label: 'Birth Year', value: person.birth_year },
+    { key: "1", label: "Mass", value: person.mass },
+    { key: "2", label: "Height", value: person.height },
+    { key: "3", label: "Gender", value: person.gender },
+    { key: "4", label: "Hair Color", value: person.hair_color },
+    { key: "5", label: "Eye Color", value: person.eye_color },
+    { key: "6", label: "Skin Color", value: person.skin_color },
+    { key: "7", label: "Birth Year", value: person.birth_year },
   ];
 
   return (
     <div key={person.created} className={styles.detailCard}>
-      <button key={person.created} className={styles.closeButton} onClick={handleCloseButtonClick}>
+      <button
+        key={person.created}
+        className={styles.closeButton}
+        onClick={handleCloseButtonClick}
+      >
         &#10006;
       </button>
 

@@ -1,8 +1,8 @@
-import type { ReactNode } from 'react';
-import { Search } from '@/components/search/Search.tsx';
-import { ErrorButton } from '@/components/error-button/ErrorButton.tsx';
+import type { ReactNode } from "react";
+import { Search } from "@/components/search/Search.tsx";
+import { ErrorButton } from "@/components/error-button/ErrorButton.tsx";
 
-import styles from './styles.module.scss';
+import styles from "./styles.module.scss";
 
 export function Header(): ReactNode {
   return (

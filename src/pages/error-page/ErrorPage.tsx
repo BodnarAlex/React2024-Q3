@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-import type { Props } from './types.ts';
-import styles from './styles.module.scss';
+import type { ReactNode } from "react";
+import type { Props } from "./types.ts";
+import styles from "./styles.module.scss";
 
 export function ErrorPage({ errorMessage, onReset }: Props): ReactNode {
   return (

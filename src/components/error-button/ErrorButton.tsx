@@ -1,5 +1,5 @@
-import { type ReactNode, useState } from 'react';
-import styles from './styles.module.scss';
+import { type ReactNode, useState } from "react";
+import styles from "./styles.module.scss";
 
 export function ErrorButton(): ReactNode {
   const [isError, setIsError] = useState(false);
@@ -9,7 +9,7 @@ export function ErrorButton(): ReactNode {
   };
 
   if (isError) {
-    throw new Error('Throw error by button');
+    throw new Error("Throw error by button");
   }
 
   return (
