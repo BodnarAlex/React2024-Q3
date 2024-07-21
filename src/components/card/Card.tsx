@@ -2,7 +2,7 @@ import { type ReactNode } from 'react';
 import styles from './styles.module.scss';
 import type { ICardProps } from './types.ts';
 
-export function Card({ person }: ICardProps): ReactNode {
+export function Card({ person, isActive }: ICardProps): ReactNode {
   const cardInfo = [
     { key: '1', label: 'Mass', value: person.mass },
     { key: '2', label: 'Height', value: person.height },
@@ -12,7 +12,10 @@ export function Card({ person }: ICardProps): ReactNode {
   ];
 
   return (
-    <div key={person.created} className={styles.card}>
+    <div
+      key={person.created}
+      className={`${styles.card} ${isActive ? styles.activeCard : ''}`}
+    >
       <h3 className={styles.name}>{person.name}</h3>
       {cardInfo.map((detail) => (
         <p key={detail.key} className={styles.paragraph}>

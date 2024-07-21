@@ -26,6 +26,7 @@ export function CardList(): ReactNode {
 
   const location = useLocation();
   const cardsOnPage = 10;
+  const activeId = location.pathname.split('/').pop() || '';
   const currentPage: number =
     Number(new URLSearchParams(location.search).get('page')) || 1;
 
@@ -104,7 +105,7 @@ export function CardList(): ReactNode {
               onClick={handleCardClick}
               to={`/details/${people.id}`}
             >
-              <Card person={people} />
+              <Card person={people} isActive={people.id === activeId} />
             </Link>
           ))}
         </div>

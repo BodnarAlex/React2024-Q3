@@ -9,6 +9,15 @@
   &:hover {
     box-shadow: 0 0 6px 3px var(--primary-color);
   }
+
+  &.activeCard {
+    background-color: var(--opacity-color);
+    cursor: auto;
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 .name {
