@@ -74,7 +74,11 @@ export function CardList(): ReactNode {
   }
 
   if (peoples.length === 0) {
-    return <h1 className={styles.name}>Nothing found</h1>;
+    return (
+      <main className='main'>
+        <h1 className={styles.name}>Nothing found</h1>
+      </main>
+    );
   }
 
   return (

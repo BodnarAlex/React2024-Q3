@@ -4,7 +4,7 @@ import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
 import { fetchData } from '../../api/api.ts';
-import { Loader } from '../loader/Loader.tsx';
+import { MiniLoader } from '../mini-loader/MiniLoader.tsx';
 
 export function DetailedCard(): ReactNode {
   const { details } = useParams();
@@ -47,7 +47,7 @@ export function DetailedCard(): ReactNode {
   };
 
   if (isLoading) {
-    return <Loader />;
+    return <MiniLoader />;
   }
 
   if (!person) {

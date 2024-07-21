@@ -23,19 +23,21 @@ export function Search(): ReactNode {
   };
 
   return (
-    <form className={styles.search_box} onSubmit={handleSubmit}>
-      <input
-        className={styles.search}
-        type='text'
-        placeholder='Search...'
-        value={inputValue}
-        onChange={handleInputChange}
-      />
-      <button
-        type='submit'
-        className={styles.search_button}
-        aria-label='Search-button'
-      />
-    </form>
+    <div className={styles.search_wrapper}>
+      <form className={styles.search_box} onSubmit={handleSubmit}>
+        <input
+          className={styles.search}
+          type='text'
+          placeholder='Search...'
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <button
+          type='submit'
+          className={styles.search_button}
+          aria-label='Search-button'
+        />
+      </form>
+    </div>
   );
 }
