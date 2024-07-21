@@ -32,15 +32,26 @@ export function CardList(): ReactNode {
   const [searchQuery] = useLocalStorage('');
   const searchValue = searchParams.get('search') || searchQuery;
 
+  const extractIdFromUrl = (url: string): string => {
+    const idMatch = url.split('/');
+    return idMatch.at(5) || '0';
+  };
+
   useEffect(() => {
     const query = searchValue;
     const fetchUpdatedData = async (): Promise<void> => {
       try {
         setIsLoading(true);
         const response = await fetchData(query, currentPage);
+        const updatedResults = response.results.map(
+          (item: IPeopleResponse) => ({
+            ...item,
+            id: extractIdFromUrl(item.url),
+          }),
+        );
         setMaxPage(Math.ceil(response.count / cardsOnPage));
-        setStatistic(`${response.results.length} / ${response.count}`);
-        setPeoples(response.results);
+        setStatistic(`${updatedResults.length} / ${response.count}`);
+        setPeoples(updatedResults);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -91,7 +102,7 @@ export function CardList(): ReactNode {
             <Link
               key={people.created}
               onClick={handleCardClick}
-              to={`/details/${encodeURIComponent(people.name)}?page=${currentPage}&search=${searchQuery}`}
+              to={`/details/${people.id}`}
             >
               <Card person={people} />
             </Link>

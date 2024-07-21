@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
-import { fetchData } from '../../api/api.ts';
+import { fetchPerson } from '../../api/api.ts'; // Import the new function
 import { MiniLoader } from '../mini-loader/MiniLoader.tsx';
 
 export function DetailedCard(): ReactNode {
@@ -18,12 +18,9 @@ export function DetailedCard(): ReactNode {
       if (details) {
         try {
           setIsLoading(true);
-          const response = await fetchData(details, 1);
-          if (response.results.length > 0) {
-            setPerson(response.results[0]);
-          } else {
-            setPerson(undefined);
-          }
+          // Use the ID directly in the fetchPerson function
+          const response = await fetchPerson(details);
+          setPerson(response);
         } catch (error) {
           console.error('Error fetching person details:', error);
           setPerson(undefined);
@@ -51,7 +48,7 @@ export function DetailedCard(): ReactNode {
   }
 
   if (!person) {
-    return <div>No found for person.</div>;
+    return <div>No person found.</div>;
   }
 
   const cardInfo = [
@@ -65,12 +62,8 @@ export function DetailedCard(): ReactNode {
   ];
 
   return (
-    <div key={person.created} className={styles.detailCard}>
-      <button
-        key={person.created}
-        className={styles.closeButton}
-        onClick={handleCloseButtonClick}
-      >
+    <div className={styles.detailCard}>
+      <button className={styles.closeButton} onClick={handleCloseButtonClick}>
         &#10006;
       </button>
 

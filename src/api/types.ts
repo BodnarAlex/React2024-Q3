@@ -22,4 +22,5 @@ export interface IPeopleResponse {
   starships: string[];
   url: string;
   vehicles: string[];
+  id?: string;
 }
