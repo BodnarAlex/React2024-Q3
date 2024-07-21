@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type { MouseEventHandler, ReactNode } from 'react';
 import { useState, useEffect } from 'react';
 import {
   useLocation,
@@ -51,11 +51,12 @@ export function CardList(): ReactNode {
     void fetchUpdatedData();
   }, [searchQuery, currentPage, searchValue]);
 
-  const handleCardClick = (): void => {
+  const handleCardClick: MouseEventHandler<HTMLAnchorElement> = (event) => {
+    event.stopPropagation();
     setSearchParams({ page: String(currentPage), search: searchQuery });
   };
 
-  const handleCloseButtonClick = (): void => {
+  const handleCloseButtonClick: MouseEventHandler<HTMLDivElement> = () => {
     if (location.pathname.includes('/details/')) {
       const params = new URLSearchParams(location.search);
       navigate({
@@ -89,9 +90,10 @@ export function CardList(): ReactNode {
           {peoples.map((people) => (
             <Link
               key={people.created}
+              onClick={handleCardClick}
               to={`/details/${encodeURIComponent(people.name)}?page=${currentPage}&search=${searchQuery}`}
             >
-              <Card person={people} onClick={() => handleCardClick()} />
+              <Card person={people} />
             </Link>
           ))}
         </div>
