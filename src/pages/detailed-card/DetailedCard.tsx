@@ -4,7 +4,7 @@ import { useLocation, useParams, useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 import type { IPeopleResponse } from '../../api/types.ts';
 import { fetchPerson } from '../../api/api.ts'; // Import the new function
-import { MiniLoader } from '../mini-loader/MiniLoader.tsx';
+import { MiniLoader } from '../../components/mini-loader/MiniLoader.tsx';
 
 export function DetailedCard(): ReactNode {
   const { details } = useParams();
