@@ -18,11 +18,8 @@ const paginationSlice = createSlice({
     setPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
-    setSearchValue(state, action: PayloadAction<string>) {
-      state.searchValue = action.payload;
-    },
   },
 });
 
-export const { setPage, setSearchValue } = paginationSlice.actions;
+export const { setPage } = paginationSlice.actions;
 export default paginationSlice.reducer;

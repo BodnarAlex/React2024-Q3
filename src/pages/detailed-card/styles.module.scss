@@ -36,6 +36,10 @@
   }
 }
 
+.error {
+  color: var(--grey-color);
+}
+
 @media (width <= 750px) {
   .card {
     width: 280px;

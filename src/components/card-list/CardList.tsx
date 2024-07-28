@@ -12,6 +12,7 @@ import { Card } from '../card/Card';
 import { Loader } from '../loader/Loader';
 import { Pagination } from '../pagination/Pagination';
 import { useFetchPeopleQuery } from '../../services/api.ts';
+import { Flyout } from '../flyout/Flyout.tsx';
 
 export function CardList(): ReactNode {
   const location = useLocation();
@@ -85,6 +86,7 @@ export function CardList(): ReactNode {
           searchValue={searchQuery}
         />
       )}
+      <Flyout />
     </main>
   );
 }

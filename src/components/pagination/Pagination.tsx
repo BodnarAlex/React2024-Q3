@@ -3,8 +3,8 @@ import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
-import { setPage } from '../../store/paginationSlice';
-import type { RootState } from '../../store';
+import { setPage } from '../../store/slices/paginationSlice';
+import type { RootState } from '../../store/rootReducer.ts';
 import type { IPaginationProps } from './types';
 
 export function Pagination({

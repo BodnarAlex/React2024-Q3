@@ -1,5 +1,11 @@
 import { type ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  selectItem,
+  unselectItem,
+} from '../../store/slices/selectedItemsSlice';
+import type { RootState } from '../../store/rootReducer.ts';
 import styles from './styles.module.scss';
 import type { ICardProps } from './types.ts';
 
@@ -21,11 +27,32 @@ export function Card({ person, isActive }: ICardProps): ReactNode {
     navigate(`/details/${person.id}?${params.toString()}`);
   };
 
+  const dispatch = useDispatch();
+  const selectFavorites = (state: RootState): string[] =>
+    state.selectedItems.items;
+  const selectedItems = useSelector(selectFavorites);
+
+  const handleCheckboxChange = (): void => {
+    if (person.id) {
+      if (selectedItems.includes(person.id)) {
+        dispatch(unselectItem(person.id));
+      } else {
+        dispatch(selectItem(person.id));
+      }
+    }
+  };
+
   return (
     <div
       onClick={handleCardClick}
       className={`${styles.card} ${isActive ? styles.activeCard : ''}`}
     >
+      <input
+        type='checkbox'
+        checked={selectedItems.includes(person.id ?? '')}
+        className={styles.like}
+        onChange={handleCheckboxChange}
+      />
       <h3 className={styles.name}>{person.name}</h3>
       {cardInfo.map((detail) => (
         <p key={detail.key} className={styles.paragraph}>

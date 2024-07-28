@@ -1,15 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import paginationReducer from './paginationSlice';
-import { peopleApi } from '../services/api.ts';
+import rootReducer from './rootReducer';
+import { peopleApi } from '../services/api';
 
-export const store = configureStore({
-  reducer: {
-    pagination: paginationReducer,
-    [peopleApi.reducerPath]: peopleApi.reducer,
-  },
+const store = configureStore({
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(peopleApi.middleware),
 });
 
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export default store;

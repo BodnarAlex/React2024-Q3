@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max-width);
+  height: 50px;
+  margin: 0 auto;
+  padding: 20px 0;
+  font-size: 22px;
+  color: var(--primary-color);
+  background: var(--background-color);
+  border-top: 2px solid var(--light-color);
+}

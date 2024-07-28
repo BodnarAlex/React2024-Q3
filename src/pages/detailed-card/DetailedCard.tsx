@@ -25,11 +25,11 @@ export function DetailedCard(): ReactNode {
   }
 
   if (error) {
-    return <div>Error fetching person details.</div>;
+    return <div className={styles.error}>Error fetching person details.</div>;
   }
 
   if (!person) {
-    return <div>No person found.</div>;
+    return <div className={styles.error}>No person found.</div>;
   }
 
   const cardInfo = [
