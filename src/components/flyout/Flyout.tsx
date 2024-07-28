@@ -19,13 +19,13 @@ export function Flyout(): ReactNode {
   };
 
   const handleDownload = (): void => {
-    alert(`Downloading ${selectedItems.length} items`);
+    // alert(`Downloading ${selectedItems.length} items`);
   };
 
   return (
     <div className={styles.flyout}>
-      <p>{selectedItems.length} items are selected</p>
       <button onClick={handleUnselectAll}>Unselect all</button>
+      <p>{selectedItems.length} items are selected</p>
       <button onClick={handleDownload}>Download</button>
     </div>
   );
