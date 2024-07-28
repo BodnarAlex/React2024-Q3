@@ -24,6 +24,7 @@
   --background-color: #d3b367;
   --opacity-color: #c39f4b;
 
+  min-height: var(--min-height);
   background: var(--background-color);
 }
 
@@ -35,6 +36,7 @@
   --background-color: #100f13;
   --opacity-color: #2d2c2a;
 
+  min-height: var(--min-height);
   background: var(--background-color);
 }
 

@@ -1,37 +1,14 @@
 import type { ReactNode } from 'react';
-import { useEffect, useState } from 'react';
-import { useLocation, useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import styles from './styles.module.scss';
-import type { IPeopleResponse } from '../../api/types.ts';
-import { fetchPerson } from '../../api/api.ts'; // Import the new function
-import { MiniLoader } from '../../components/mini-loader/MiniLoader.tsx';
+import { useFetchPersonQuery } from '../../services/api.ts';
+import { MiniLoader } from '../../components/mini-loader/MiniLoader';
 
 export function DetailedCard(): ReactNode {
   const { details } = useParams();
-  const [person, setPerson] = useState<IPeopleResponse | undefined>(undefined);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  useEffect(() => {
-    const fetchPersonDetails = async (): Promise<void> => {
-      if (details) {
-        try {
-          setIsLoading(true);
-          // Use the ID directly in the fetchPerson function
-          const response = await fetchPerson(details);
-          setPerson(response);
-        } catch (error) {
-          console.error('Error fetching person details:', error);
-          setPerson(undefined);
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    void fetchPersonDetails();
-  }, [details]);
+  const { data: person, error, isLoading } = useFetchPersonQuery(details || '');
 
   const handleCloseButtonClick = (): void => {
     if (location.pathname.includes('/details/')) {
@@ -45,6 +22,10 @@ export function DetailedCard(): ReactNode {
 
   if (isLoading) {
     return <MiniLoader />;
+  }
+
+  if (error) {
+    return <div>Error fetching person details.</div>;
   }
 
   if (!person) {

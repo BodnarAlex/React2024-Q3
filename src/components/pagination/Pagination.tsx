@@ -1,16 +1,22 @@
 import { type ReactNode, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import classNames from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
-import type { ICardProps } from './types.ts';
+import { setPage } from '../../store/paginationSlice';
+import type { RootState } from '../../store';
+import type { IPaginationProps } from './types';
 
 export function Pagination({
   numberPage,
   maxPage,
   searchValue,
-}: ICardProps): ReactNode {
+}: IPaginationProps): ReactNode {
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage: number = Number(searchParams.get('page')) || numberPage;
+  const dispatch = useDispatch();
+  const currentPage =
+    useSelector((state: RootState) => state.pagination.currentPage) ||
+    numberPage;
   const pages: ReactNode[] = [];
   const numAdjacentPages = 1;
 
@@ -21,6 +27,7 @@ export function Pagination({
   }, [currentPage, searchParams, setSearchParams, searchValue]);
 
   const updatePage = (page: number): void => {
+    dispatch(setPage(page));
     setSearchParams({ page: page.toString(), search: searchValue });
   };
 
