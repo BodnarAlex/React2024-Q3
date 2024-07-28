@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
@@ -12,6 +12,8 @@ export function Pagination({
   maxPage,
   searchValue,
 }: IPaginationProps): ReactNode {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const currentPage =
@@ -28,7 +30,10 @@ export function Pagination({
 
   const updatePage = (page: number): void => {
     dispatch(setPage(page));
-    setSearchParams({ page: page.toString(), search: searchValue });
+    const params = new URLSearchParams(location.search);
+    params.set('page', page.toString());
+    const newUrl = `${location.pathname}?${params.toString()}`;
+    navigate(newUrl);
   };
 
   const createPageLink = (

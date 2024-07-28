@@ -26,6 +26,10 @@
   color: var(--light-color);
 }
 
+.name {
+  color: var(--light-color);
+}
+
 @media (width <= 800px) {
   .commonBlock {
     flex-flow: column-reverse nowrap;

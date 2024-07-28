@@ -3,7 +3,6 @@ import {
   useLocation,
   useSearchParams,
   Outlet,
-  Link,
   useNavigate,
 } from 'react-router-dom';
 import { NotFound } from '@/pages/not-found/NotFound';
@@ -16,7 +15,7 @@ import { useFetchPeopleQuery } from '../../services/api.ts';
 
 export function CardList(): ReactNode {
   const location = useLocation();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const [searchQuery] = useLocalStorage('');
   const searchValue = searchParams.get('search') || searchQuery;
@@ -43,22 +42,12 @@ export function CardList(): ReactNode {
   const maxPage = Math.ceil((data?.count || 0) / cardsOnPage);
   const statistic = `${peoples.length} / ${data?.count || 0}`;
 
-  const handleCardClick: React.MouseEventHandler<HTMLAnchorElement> = (
-    event,
-  ) => {
-    event.stopPropagation();
-    setSearchParams({ page: String(currentPage), search: searchQuery });
-  };
-
   const handleCloseButtonClick: React.MouseEventHandler<
     HTMLDivElement
   > = () => {
     if (location.pathname.includes('/details/')) {
       const params = new URLSearchParams(location.search);
-      navigate({
-        pathname: '/',
-        search: params.toString(),
-      });
+      navigate(`/?${params.toString()}`);
     }
   };
 
@@ -70,28 +59,22 @@ export function CardList(): ReactNode {
     return <NotFound />;
   }
 
-  if (peoples.length === 0) {
-    return (
-      <main className='main'>
-        <h1 className={styles.name}>Nothing found</h1>
-      </main>
-    );
-  }
-
   return (
     <main className='main'>
       <p className={styles.itemInfo}>{statistic}</p>
       <div className={styles.commonBlock} onClick={handleCloseButtonClick}>
         <div className={styles.cardList}>
-          {peoples.map((people) => (
-            <Link
-              key={people.created}
-              onClick={handleCardClick}
-              to={`/details/${people.id}`}
-            >
-              <Card person={people} isActive={people.id === activeId} />
-            </Link>
-          ))}
+          {peoples.length === 0 && (
+            <h1 className={styles.name}>Nothing found</h1>
+          )}
+          {peoples &&
+            peoples.map((people) => (
+              <Card
+                key={people.id}
+                person={people}
+                isActive={people.id === activeId}
+              />
+            ))}
         </div>
         <Outlet />
       </div>
