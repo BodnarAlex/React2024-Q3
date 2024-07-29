@@ -1,8 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import type { IPeopleResponse } from '../../services/types.ts';
 
 interface SelectedItemsState {
-  items: string[];
+  items: IPeopleResponse[];
 }
 
 const initialState: SelectedItemsState = {
@@ -13,13 +14,11 @@ const selectedItemsSlice = createSlice({
   name: 'selectedItems',
   initialState,
   reducers: {
-    selectItem: (state, action: PayloadAction<string>) => {
-      if (!state.items.includes(action.payload)) {
-        state.items.push(action.payload);
-      }
+    selectItem: (state, action: PayloadAction<IPeopleResponse>) => {
+      state.items.push(action.payload);
     },
     unselectItem: (state, action: PayloadAction<string>) => {
-      state.items = state.items.filter((item) => item !== action.payload);
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
     unselectAll: (state) => {
       state.items = [];

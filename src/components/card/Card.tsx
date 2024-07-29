@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import type { IPeopleResponse } from '../../services/types.ts';
 import {
   selectItem,
   unselectItem,
@@ -28,16 +29,17 @@ export function Card({ person, isActive }: ICardProps): ReactNode {
   };
 
   const dispatch = useDispatch();
-  const selectFavorites = (state: RootState): string[] =>
+  const selectFavorites = (state: RootState): IPeopleResponse[] =>
     state.selectedItems.items;
   const selectedItems = useSelector(selectFavorites);
 
   const handleCheckboxChange = (): void => {
     if (person.id) {
-      if (selectedItems.includes(person.id)) {
+      const check = selectedItems.filter((item) => item.id === person.id);
+      if (check.length > 0) {
         dispatch(unselectItem(person.id));
       } else {
-        dispatch(selectItem(person.id));
+        dispatch(selectItem(person));
       }
     }
   };
@@ -49,7 +51,9 @@ export function Card({ person, isActive }: ICardProps): ReactNode {
     >
       <input
         type='checkbox'
-        checked={selectedItems.includes(person.id ?? '')}
+        checked={
+          selectedItems.filter((item) => item.id === person.id).length > 0
+        }
         className={styles.like}
         onChange={handleCheckboxChange}
       />

@@ -9,13 +9,16 @@ export const peopleApi = createApi({
       IAllResponse,
       { searchText: string; page: number }
     >({
-      query: ({ searchText, page }) =>
-        `people/?search=${searchText}&page=${page}`,
+      query: ({ searchText, page }) => ({
+        url: 'people/',
+        params: { search: searchText, page },
+      }),
     }),
     fetchPerson: builder.query<IPeopleResponse, string>({
-      query: (id) => `people/${id}`,
+      query: (id) => `people/${id}/`,
     }),
   }),
 });
 
 export const { useFetchPeopleQuery, useFetchPersonQuery } = peopleApi;
+export default peopleApi;
