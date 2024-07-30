@@ -1,6 +1,6 @@
-import type { IPeopleResponse } from '../../api/types.ts';
+import type { IPeopleResponse } from '../../services/types.ts';
 
 export interface ICardProps {
   person: IPeopleResponse;
-  onClick: () => void;
+  isActive?: boolean;
 }

@@ -1,5 +1,18 @@
+.search_wrapper {
+  width: 100%;
+  max-width: var(--max-width);
+  height: 44px;
+  margin: 0 auto;
+  padding: 20px 0;
+  text-align: center;
+  background-color: var(--background-color);
+  border-bottom: 2px solid var(--light-color);
+}
+
 .search_box {
   position: relative;
+  width: 225px;
+  margin: 0 auto;
 }
 
 .search {

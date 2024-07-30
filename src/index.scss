@@ -1,14 +1,8 @@
 :root {
-  --primary-color: #c39f4b;
-  --secondary-color: #e0ce97;
-  --grey-color: #535e5e;
-  --light-color: #fcfbe7;
-  --background-color: #100f13;
-
   --min-width: 360px;
   --max-width: 1440px;
   --min-height: 100dvh;
-  --mid-height: calc(100svh - 285px);
+  --mid-height: calc(100svh - 285px - 140px);
 
   font-family: "Inter", system-ui, "Avenir", "Helvetica", "Arial", sans-serif;
   line-height: 1.5;
@@ -22,6 +16,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.theme-light {
+  --primary-color: #100f13;
+  --secondary-color: #2d2c2a;
+  --grey-color: #535e5e;
+  --light-color: #fcfbe7;
+  --background-color: #d3b367;
+  --opacity-color: #c39f4b;
+
+  min-height: var(--min-height);
+  background: var(--background-color);
+}
+
+.theme-dark {
+  --primary-color: #c39f4b;
+  --secondary-color: #e0ce97;
+  --grey-color: #535e5e;
+  --light-color: #fcfbe7;
+  --background-color: #100f13;
+  --opacity-color: #2d2c2a;
+
+  min-height: var(--min-height);
+  background: var(--background-color);
+}
+
+
 body {
   margin: 0;
 }
@@ -34,11 +53,11 @@ body {
   width: 100%;
   min-height: var(--min-height);
   text-align: center;
-  background: var(--background-color);
 }
 
 .main {
   display: flex;
+  flex-grow: 1;
   flex-flow: column wrap;
   gap: 2%;
   justify-content: center;
@@ -50,6 +69,7 @@ body {
   margin: 10px auto;
   padding: 0 50px;
   text-align: center;
+  background: var(--background-color);
 }
 
 a {

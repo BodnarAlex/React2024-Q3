@@ -1,16 +1,24 @@
 import { type ReactNode, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles.module.scss';
-import type { ICardProps } from './types.ts';
+import { setPage } from '../../store/slices/paginationSlice';
+import type { RootState } from '../../store/rootReducer.ts';
+import type { IPaginationProps } from './types';
 
 export function Pagination({
   numberPage,
   maxPage,
   searchValue,
-}: ICardProps): ReactNode {
+}: IPaginationProps): ReactNode {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage: number = Number(searchParams.get('page')) || numberPage;
+  const dispatch = useDispatch();
+  const currentPage =
+    useSelector((state: RootState) => state.pagination.currentPage) ||
+    numberPage;
   const pages: ReactNode[] = [];
   const numAdjacentPages = 1;
 
@@ -21,7 +29,11 @@ export function Pagination({
   }, [currentPage, searchParams, setSearchParams, searchValue]);
 
   const updatePage = (page: number): void => {
-    setSearchParams({ page: page.toString(), search: searchValue });
+    dispatch(setPage(page));
+    const params = new URLSearchParams(location.search);
+    params.set('page', page.toString());
+    const newUrl = `${location.pathname}?${params.toString()}`;
+    navigate(newUrl);
   };
 
   const createPageLink = (

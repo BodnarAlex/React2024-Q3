@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import type { ReactNode, ChangeEvent, FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { useLocalStorage } from '../../hooks/useLocalStorage.ts';
+import { setPage } from '../../store/slices/paginationSlice.ts';
 
 import styles from './styles.module.scss';
 
 export function Search(): ReactNode {
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchValue, setSearchValue] = useLocalStorage(
     searchParams.get('search') || '',
@@ -19,23 +22,26 @@ export function Search(): ReactNode {
   const handleSubmit = (event: FormEvent): void => {
     event.preventDefault();
     setSearchValue(inputValue);
+    dispatch(setPage(1));
     setSearchParams({ page: '1', search: inputValue });
   };
 
   return (
-    <form className={styles.search_box} onSubmit={handleSubmit}>
-      <input
-        className={styles.search}
-        type='text'
-        placeholder='Search...'
-        value={inputValue}
-        onChange={handleInputChange}
-      />
-      <button
-        type='submit'
-        className={styles.search_button}
-        aria-label='Search-button'
-      />
-    </form>
+    <div className={styles.search_wrapper}>
+      <form className={styles.search_box} onSubmit={handleSubmit}>
+        <input
+          className={styles.search}
+          type='text'
+          placeholder='Search...'
+          value={inputValue}
+          onChange={handleInputChange}
+        />
+        <button
+          type='submit'
+          className={styles.search_button}
+          aria-label='Search-button'
+        />
+      </form>
+    </div>
   );
 }

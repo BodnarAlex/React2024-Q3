@@ -1,0 +1,28 @@
+.mini {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 280px;
+  margin: 60px auto 0;
+}
+
+.weapon {
+  width: 150px;
+  height: 150px;
+  background-image: url("../../assets/images/violet-weapon.png");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  animation: round 3000ms infinite linear;
+}
+
+@keyframes round {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

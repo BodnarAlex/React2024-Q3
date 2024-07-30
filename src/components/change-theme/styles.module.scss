@@ -1,0 +1,12 @@
+
+.themeButton {
+  padding: 8px 16px;
+  color: var(--background-color);
+  background-color: var(--primary-color);
+  border: none;
+  cursor: pointer;
+}
+
+.themeButton:hover {
+  background-color: var(--secondary-color);
+}
