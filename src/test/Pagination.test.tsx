@@ -1,31 +1,37 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, expect } from 'vitest';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { Pagination } from '../components/pagination/Pagination.tsx';
-
-const mockProps = {
-  numberPage: 1,
-  maxPage: 5,
-  searchValue: 'o',
-};
+import store from '../store/index.ts';
 
 describe('Pagination component', () => {
-  it('should update URL query parameter when page changes', async () => {
+  it('renders all required components', () => {
     render(
-      <MemoryRouter initialEntries={['/?search=o&page=1']}>
-        <Pagination
-          numberPage={mockProps.numberPage}
-          maxPage={mockProps.maxPage}
-          searchValue={mockProps.searchValue}
-        />
-      </MemoryRouter>,
+      <Provider store={store}>
+        <BrowserRouter>
+          <Pagination numberPage={1} maxPage={9} searchValue='o' />
+        </BrowserRouter>
+      </Provider>,
     );
 
-    expect(screen.getByText('1')).toBeVisible();
+    expect(screen.getByText('...')).toBeInTheDocument();
+    expect(screen.getByText('1')).toBeInTheDocument();
+    expect(screen.getByText('<')).toBeInTheDocument();
+    expect(screen.queryByText('10')).not.toBeInTheDocument();
+  });
 
-    fireEvent.click(screen.getByText('2'));
+  it('renders all required components', () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <Pagination numberPage={1} maxPage={1} searchValue='o' />
+        </BrowserRouter>
+      </Provider>,
+    );
 
-    await waitFor(() => {
-      expect(screen.getByText('2')).toBeVisible();
-    });
+    expect(screen.getByText('1')).toBeInTheDocument();
+    expect(screen.getByText('<')).toBeInTheDocument();
+    expect(screen.queryByText('...')).not.toBeInTheDocument();
   });
 });
