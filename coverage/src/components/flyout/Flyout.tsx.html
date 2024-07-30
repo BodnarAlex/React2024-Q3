@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.24% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>5/29</span>
+                <span class='fraction'>29/29</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,77 +109,77 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { type ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { useHandleFlyout } from '@/hooks/useHandleFlyout.ts';
 import type { RootState } from '../../store/rootReducer.ts';
 import styles from './styles.module.scss';
 &nbsp;
-export <span class="fstat-no" title="function not covered" >function Flyout(): ReactNode {</span>
-<span class="cstat-no" title="statement not covered" >  const selectedItems = useSelector(</span>
-<span class="cstat-no" title="statement not covered" >    (state: RootState) =&gt; state.selectedItems.items,</span>
-<span class="cstat-no" title="statement not covered" >  );</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  const { downloadUrl, handleRemoveAll } = useHandleFlyout(selectedItems);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  const handleUnselectAll = (): void =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    handleRemoveAll();</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  if (selectedItems.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    return null;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;div className={styles.flyout}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;button className={styles.button} onClick={handleUnselectAll}&gt;</span>
-        Unselect all
-<span class="cstat-no" title="statement not covered" >      &lt;/button&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;p className={styles.text}&gt;{selectedItems.length} items are selected&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {downloadUrl &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;a</span>
-<span class="cstat-no" title="statement not covered" >          href={downloadUrl}</span>
-<span class="cstat-no" title="statement not covered" >          download={`${selectedItems.length}_star_wars_characters.csv`}</span>
-<span class="cstat-no" title="statement not covered" >          onClick={handleUnselectAll}</span>
-        &gt;
-<span class="cstat-no" title="statement not covered" >          &lt;div className={styles.button}&gt;Download&lt;/div&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/a&gt;</span>
-      )}
-<span class="cstat-no" title="statement not covered" >    &lt;/div&gt;</span>
+export function Flyout(): ReactNode {
+  const selectedItems = useSelector(
+    (state: RootState) =&gt; state.selectedItems.items,
   );
-<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
+  const { downloadUrl, handleRemoveAll } = useHandleFlyout(selectedItems);
+&nbsp;
+  const handleUnselectAll = (): void =&gt; {
+    handleRemoveAll();
+  };
+&nbsp;
+  if (selectedItems.length === 0) {
+    return null;
+  }
+&nbsp;
+  return (
+    &lt;div className={styles.flyout}&gt;
+      &lt;button className={styles.button} onClick={handleUnselectAll}&gt;
+        Unselect all
+      &lt;/button&gt;
+      &lt;p className={styles.text}&gt;{selectedItems.length} items are selected&lt;/p&gt;
+      {downloadUrl &amp;&amp; (
+        &lt;a
+          href={downloadUrl}
+          download={`${selectedItems.length}_star_wars_characters.csv`}
+          onClick={handleUnselectAll}
+        &gt;
+          &lt;div className={styles.button}&gt;Download&lt;/div&gt;
+        &lt;/a&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -187,7 +187,7 @@ export <span class="fstat-no" title="function not covered" >function Flyout(): R
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-07-30T10:30:44.223Z
+                at 2024-07-30T13:02:21.408Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

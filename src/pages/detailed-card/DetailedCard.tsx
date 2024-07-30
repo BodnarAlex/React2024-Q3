@@ -33,13 +33,13 @@ export function DetailedCard(): ReactNode {
   }
 
   const cardInfo = [
-    { key: '1', label: 'Mass', value: person.mass },
-    { key: '2', label: 'Height', value: person.height },
-    { key: '3', label: 'Gender', value: person.gender },
-    { key: '4', label: 'Hair Color', value: person.hair_color },
-    { key: '5', label: 'Eye Color', value: person.eye_color },
-    { key: '6', label: 'Skin Color', value: person.skin_color },
-    { key: '7', label: 'Birth Year', value: person.birth_year },
+    { key: 'd1', label: 'Mass', value: person.mass },
+    { key: 'd2', label: 'Height', value: person.height },
+    { key: 'd3', label: 'Gender', value: person.gender },
+    { key: 'd4', label: 'Hair Color', value: person.hair_color },
+    { key: 'd5', label: 'Eye Color', value: person.eye_color },
+    { key: 'd6', label: 'Skin Color', value: person.skin_color },
+    { key: 'd7', label: 'Birth Year', value: person.birth_year },
   ];
 
   return (
